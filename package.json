@@ -33,7 +33,6 @@
     "replace-in-file": "^4.1.0"
   },
   "scripts": {
-    "start": "npm run test:exercise",
     "test": "is-ci \"test:final:coverage\" \"test:exercise:watch\"",
     "test:exercise": "jest --config test/jest.config.exercises.js",
     "test:exercise:watch": "npm run test:exercise -- --watch",
