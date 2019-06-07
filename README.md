@@ -1,7 +1,7 @@
 # Testing Node.js Apps
 
 👋 hi there! My name is [Kent C. Dodds](https://kentcdodds.com)! This is a
-workshop repo to teach you the fundamentals of ReactJS!
+workshop repo to teach you how to test your Node.js Apps!
 
 [![Build Status][build-badge]][build]
 [![AppVeyor Build Status][win-build-badge]][win-build]
