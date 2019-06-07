@@ -1,14 +1,16 @@
-test('it works', () => {})
+// Unit Testing Pure Functions
 
-/*
-🦉 Elaboration & Feedback
-After the instruction, copy the URL below into your browser and fill out the form:
-http://ws.kcd.im/?ws=Testing%20Node%20Apps&e=&em=
-*/
+import {isPasswordAllowed} from '../01'
 
-////////////////////////////////////////////////////////////////////
-//                                                                //
-//                 Don't make changes below here.                 //
-// But do look at it to see how your code is intended to be used. //
-//                                                                //
-////////////////////////////////////////////////////////////////////
+test('isPasswordAllowed returns true for valid passwords', () => {
+  expect(isPasswordAllowed('!aBc123')).toBe(true)
+})
+
+test('isPasswordAllowed returns false for invalid passwords', () => {
+  expect(isPasswordAllowed('a2c!')).toBe(false)
+  expect(isPasswordAllowed('123456!')).toBe(false)
+  expect(isPasswordAllowed('ABCdef!')).toBe(false)
+  expect(isPasswordAllowed('abc123!')).toBe(false)
+  expect(isPasswordAllowed('ABC123!')).toBe(false)
+  expect(isPasswordAllowed('ABCdef123')).toBe(false)
+})

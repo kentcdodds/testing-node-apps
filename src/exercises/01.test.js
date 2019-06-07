@@ -1,4 +1,9 @@
-test('it works', () => {})
+// Unit Testing Pure Functions
+
+// eslint-disable-next-line no-unused-vars
+import {isPasswordAllowed} from '../01'
+
+// TODO: write instructions
 
 /*
 🦉 Elaboration & Feedback
