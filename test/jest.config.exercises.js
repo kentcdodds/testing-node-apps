@@ -8,7 +8,7 @@ module.exports = {
   testMatch: ['**/exercises/*.test.js'],
   moduleDirectories: ['node_modules', __dirname],
   coverageDirectory: path.join(__dirname, '../coverage/final'),
-  collectCoverageFrom: ['**/src/**/*.js'],
+  coveragePathIgnorePatterns: ['.*/exercises-?.*/.*'],
   watchPlugins: [
     require.resolve('jest-watch-typeahead/filename'),
     require.resolve('jest-watch-typeahead/testname'),

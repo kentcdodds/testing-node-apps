@@ -8,6 +8,7 @@ module.exports = {
   moduleDirectories: ['node_modules', __dirname],
   coverageDirectory: path.join(__dirname, '../coverage/collective'),
   collectCoverageFrom: ['**/src/**/*.js'],
+  coveragePathIgnorePatterns: ['.*/exercises-?.*/.*'],
   projects: [
     require.resolve('./jest.config.exercises'),
     require.resolve('./jest.config.final'),
