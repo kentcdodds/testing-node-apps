@@ -5,6 +5,7 @@ module.exports = {
   roots: [path.join(__dirname, '../src')],
   testEnvironment: 'node',
   testMatch: ['**/exercises/*.test.js'],
+  moduleDirectories: ['node_modules', __dirname],
   coverageDirectory: path.join(__dirname, '../coverage/final'),
   watchPlugins: [
     require.resolve('jest-watch-typeahead/filename'),
