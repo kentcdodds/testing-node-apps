@@ -1,5 +1,8 @@
 module.exports = {
   extends: ['kentcdodds', 'kentcdodds/jest'],
+  rules: {
+    'no-console': 'off',
+  },
   overrides: [
     {
       files: ['**/*.test.js'],
