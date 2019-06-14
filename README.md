@@ -27,7 +27,10 @@ following:
 - [ ] Attend my
       [Testing Fundamentals Workshop](https://kentcdodds.com/workshops/testing-fundamentals)
       or have the equivalent fundamental understanding and experience with
-      automated testing and tools.
+      automated testing and tools. (Additional learning material:
+      [But really, what is a JavaScript test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test)
+      and
+      [But really, what is a JavaScript mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock))
 - [ ] Attend my
       [Modern JavaScript Workshop](https://kentcdodds.com/workshops/modern-javascript)
       or have the equivalent experience with modern JavaScript APIs.
