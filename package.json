@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5"
+    "@babel/preset-env": "^7.4.5",
+    "cpy": "^7.3.0",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "cross-spawn": "^6.0.5",

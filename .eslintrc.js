@@ -2,6 +2,7 @@ module.exports = {
   extends: ['kentcdodds', 'kentcdodds/jest'],
   rules: {
     'no-console': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
   overrides: [
     {
