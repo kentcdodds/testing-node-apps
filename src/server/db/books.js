@@ -1,5 +1,23 @@
-async function readById() {}
+import _ from 'lodash'
 
-async function readManyById() {}
+let books = []
 
-export {readById, readManyById}
+async function query(queryObj) {
+  return _.filter(books, queryObj)
+}
+
+async function readById(id) {
+  return _.find(books, {id})
+}
+
+async function readManyById(ids) {
+  return _.filter(books, b => ids.includes(b.id))
+}
+
+async function insertMany(manyBooks) {
+  books = [...books, ...manyBooks]
+}
+
+export {readById, readManyById, insertMany, query}
+
+/* eslint require-await:0 */

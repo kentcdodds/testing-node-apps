@@ -27,7 +27,7 @@ test(`getUserListItems returns a user's list items`, async () => {
     }),
   ]
   booksDB.readManyById.mockResolvedValueOnce(books)
-  listItemsDB.readManyBy.mockResolvedValueOnce(userListItems)
+  listItemsDB.query.mockResolvedValueOnce(userListItems)
 
   const listItems = await listItemController.getUserListItems({user})
 
@@ -36,7 +36,7 @@ test(`getUserListItems returns a user's list items`, async () => {
     userListItems[0].bookId,
     userListItems[1].bookId,
   ])
-  expect(listItemsDB.readManyBy).toHaveBeenCalledWith({ownerId: user.id})
+  expect(listItemsDB.query).toHaveBeenCalledWith({ownerId: user.id})
   expect(listItems).toMatchObject(userListItems)
   expect(listItems.map(li => li.book)).toEqual(books)
 })
@@ -45,7 +45,7 @@ test('createListItem creates and returns a list item', async () => {
   const user = buildUser()
   const book = buildBook()
   const createdListItem = buildListItem({ownerId: user.id, bookId: book.id})
-  listItemsDB.readBy.mockResolvedValueOnce(null)
+  listItemsDB.query.mockResolvedValueOnce(null)
   listItemsDB.create.mockResolvedValueOnce(createdListItem)
   booksDB.readById.mockResolvedValueOnce(book)
 
@@ -54,8 +54,8 @@ test('createListItem creates and returns a list item', async () => {
     bookId: book.id,
   })
 
-  expect(listItemsDB.readBy).toHaveBeenCalledTimes(1)
-  expect(listItemsDB.readBy).toHaveBeenCalledWith({
+  expect(listItemsDB.query).toHaveBeenCalledTimes(1)
+  expect(listItemsDB.query).toHaveBeenCalledWith({
     ownerId: user.id,
     bookId: book.id,
   })
@@ -77,7 +77,7 @@ test('createListItem throws an error if the user already has a list item for the
   const user = buildUser({id: 'FAKE_USER_ID'})
   const book = buildBook({id: 'FAKE_BOOK_ID'})
   const existingListItem = buildListItem({ownerId: user.id, bookId: book.id})
-  listItemsDB.readBy.mockResolvedValueOnce(existingListItem)
+  listItemsDB.query.mockResolvedValueOnce(existingListItem)
 
   const error = await listItemController
     .createListItem({
@@ -86,8 +86,8 @@ test('createListItem throws an error if the user already has a list item for the
     })
     .catch(e => e)
 
-  expect(listItemsDB.readBy).toHaveBeenCalledTimes(1)
-  expect(listItemsDB.readBy).toHaveBeenCalledWith({
+  expect(listItemsDB.query).toHaveBeenCalledTimes(1)
+  expect(listItemsDB.query).toHaveBeenCalledWith({
     ownerId: user.id,
     bookId: book.id,
   })
@@ -118,10 +118,7 @@ test('updateListItem updates an existing list item', async () => {
   expect(listItemsDB.readById).toHaveBeenCalledWith(listItem.id)
 
   expect(listItemsDB.update).toHaveBeenCalledTimes(1)
-  expect(listItemsDB.update).toHaveBeenCalledWith(
-    listItem.id,
-    mergedListItemAndUpdates,
-  )
+  expect(listItemsDB.update).toHaveBeenCalledWith(listItem.id, updates)
 
   expect(booksDB.readById).toHaveBeenCalledTimes(1)
   expect(booksDB.readById).toHaveBeenCalledWith(book.id)
