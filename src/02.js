@@ -1,5 +1,5 @@
-import * as listItemsDB from './app/db/list-items'
-import * as booksDB from './app/db/books'
+import * as listItemsDB from './server/db/list-items'
+import * as booksDB from './server/db/books'
 
 async function getUserListItems({user}) {
   const listItems = await listItemsDB.readManyBy({ownerId: user.id})

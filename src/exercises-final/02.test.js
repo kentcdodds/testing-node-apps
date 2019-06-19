@@ -3,11 +3,11 @@
 import faker from 'faker'
 import {buildUser, buildBook, buildListItem} from 'utils/generate'
 import * as listItemController from '../02'
-import * as listItemsDB from '../app/db/list-items'
-import * as booksDB from '../app/db/books'
+import * as listItemsDB from '../server/db/list-items'
+import * as booksDB from '../server/db/books'
 
-jest.mock('../app/db/list-items')
-jest.mock('../app/db/books')
+jest.mock('../server/db/list-items')
+jest.mock('../server/db/books')
 
 beforeEach(() => {
   jest.clearAllMocks()

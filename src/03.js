@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
-import log from './app/logging-service'
-import * as usersDB from './app/db/users'
+import log from './server/logging-service'
+import * as usersDB from './server/db/users'
 
 async function setUser(req, res) {
   const auth = req.get('Authorization') || ''

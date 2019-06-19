@@ -2,12 +2,12 @@
 
 import jwt from 'jsonwebtoken'
 import {buildUser} from 'utils/generate'
-import * as usersDB from '../app/db/users'
-import log from '../app/logging-service'
+import * as usersDB from '../server/db/users'
+import log from '../server/logging-service'
 import {setUser} from '../03'
 
-jest.mock('../app/logging-service')
-jest.mock('../app/db/users')
+jest.mock('../server/logging-service')
+jest.mock('../server/db/users')
 
 const originalSecret = process.env.JWT_SECRET
 
