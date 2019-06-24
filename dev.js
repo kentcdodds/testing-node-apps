@@ -1,7 +1,7 @@
 ;(async () => {
-  require('babel-register')
-  const serverTestUtils = require('./test/til-server-test-utils')
-  await serverTestUtils.initDb()
-  await serverTestUtils.insertTestUser()
+  require('@babel/register')
+  const dbUtils = require('./test/utils/db-utils')
+  await dbUtils.initDb()
+  await dbUtils.insertTestUser()
   require('./src')
 })()

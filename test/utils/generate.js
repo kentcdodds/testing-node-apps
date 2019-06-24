@@ -1,16 +1,22 @@
 import faker from 'faker'
+import {getUserToken, getSaltAndHash} from '../../src/utils/auth'
 
-function buildUser(overrides) {
+const getPassword = faker.internet.password
+const getUsername = faker.internet.userName
+const getId = faker.random.uuid
+
+function buildUser({password = getPassword(), ...overrides} = {}) {
   return {
-    id: faker.random.uuid(),
-    username: faker.internet.userName(),
+    id: getId(),
+    username: getUsername(),
+    ...getSaltAndHash(password),
     ...overrides,
   }
 }
 
 function buildBook(overrides) {
   return {
-    id: faker.random.uuid(),
+    id: getId(),
     title: faker.lorem.words(),
     author: faker.name.findName(),
     coverImageUrl: faker.image.imageUrl(),
@@ -23,13 +29,13 @@ function buildBook(overrides) {
 
 function buildListItem(overrides = {}) {
   const {
-    bookId = overrides.book ? overrides.book.id : faker.random.uuid(),
+    bookId = overrides.book ? overrides.book.id : getId(),
     startDate = faker.date.past(2),
     finishDate = faker.date.between(startDate, new Date()),
-    owner = {ownerId: faker.random.uuid()},
+    owner = {ownerId: getId()},
   } = overrides
   return {
-    id: faker.random.uuid(),
+    id: getId(),
     bookId,
     ownerId: owner.id,
     rating: faker.random.number(5),
@@ -40,4 +46,25 @@ function buildListItem(overrides = {}) {
   }
 }
 
-export {buildUser, buildListItem, buildBook}
+function token(user) {
+  return getUserToken(buildUser(user))
+}
+
+function loginForm(overrides) {
+  return {
+    username: getUsername(),
+    password: getPassword(),
+    ...overrides,
+  }
+}
+
+export {
+  buildUser,
+  buildListItem,
+  buildBook,
+  token,
+  loginForm,
+  getPassword as password,
+  getUsername as username,
+  getId as id,
+}

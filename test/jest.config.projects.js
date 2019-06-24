@@ -4,11 +4,15 @@ module.exports = {
   roots: [path.join(__dirname, '../src')],
   rootDir: path.join(__dirname, '..'),
   testEnvironment: 'node',
-  testMatch: ['**/*.test.js'],
-  moduleDirectories: ['node_modules', __dirname],
+  testMatch: ['**/__tests__/**'],
+  moduleDirectories: [
+    'node_modules',
+    __dirname,
+    path.join(__dirname, '../src'),
+  ],
   coverageDirectory: path.join(__dirname, '../coverage/collective'),
   collectCoverageFrom: ['**/src/**/*.js'],
-  coveragePathIgnorePatterns: ['.*/exercises-?.*/.*'],
+  coveragePathIgnorePatterns: ['.*/__tests__/.*'],
   projects: [
     require.resolve('./jest.config.exercises'),
     require.resolve('./jest.config.final'),

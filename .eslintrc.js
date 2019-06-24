@@ -8,7 +8,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/*.test.js'],
+      files: ['**/__tests__/**'],
       settings: {
         'import/resolver': {
           jest: {

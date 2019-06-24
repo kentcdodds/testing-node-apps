@@ -1,6 +1,6 @@
-import * as booksDB from '../../src/server/db/books'
-import * as usersDB from '../../src/server/db/users'
-import * as listItemsDB from '../../src/server/db/list-items'
+import * as booksDB from '../../src/db/books'
+import * as usersDB from '../../src/db/users'
+import * as listItemsDB from '../../src/db/list-items'
 import * as generate from './generate'
 
 async function initDb({
@@ -14,11 +14,11 @@ async function initDb({
     )
     .flat(),
 } = {}) {
-  await Promise.all(
+  await Promise.all([
     booksDB.insertMany(books),
     usersDB.insertMany(users),
     listItemsDB.insertMany(listItems),
-  )
+  ])
   return {books, users, listItems}
 }
 
@@ -38,7 +38,7 @@ async function insertTestUser(
 
 async function resetDb({books, users, listItems} = {}) {
   await initDb({books, users, listItems})
-  return {books: booksDB}
+  return {books: booksDB.query()}
 }
 
 export {resetDb, initDb, insertTestUser, generate}
