@@ -76,7 +76,8 @@ You should be able to work through the entire workshop in the browser. This is
 actually the recommended approach as it requires absolutely no setup whatsoever.
 Go to
 [this codesandbox](https://codesandbox.io/s/github/kentcdodds/testing-node-apps)
-and you should be good to go.
+and click `Fork` in the top right corner. Then click the `+` in the terminal and
+you can run `npm test` to get the test watch mode started.
 
 [![Edit testing-node-apps](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/kentcdodds/testing-node-apps)
 

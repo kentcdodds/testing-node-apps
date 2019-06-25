@@ -2,6 +2,7 @@
 
 import faker from 'faker'
 import {buildUser, buildBook, buildListItem} from 'utils/generate'
+import {getRes, getReq} from 'utils/middleware'
 import * as listItemsDB from '../../db/list-items'
 import * as booksDB from '../../db/books'
 import * as listItemController from '../list-items'
@@ -29,8 +30,8 @@ test(`getListItems returns a user's list items`, async () => {
   booksDB.readManyById.mockResolvedValueOnce(books)
   listItemsDB.query.mockResolvedValueOnce(userListItems)
 
-  const req = {user}
-  const res = {json: jest.fn()}
+  const req = getReq({user})
+  const res = getRes()
 
   await listItemController.getListItems(req, res)
 
@@ -58,8 +59,8 @@ test('createListItem creates and returns a list item', async () => {
   listItemsDB.create.mockResolvedValueOnce(createdListItem)
   booksDB.readById.mockResolvedValueOnce(book)
 
-  const req = {user, body: {bookId: book.id}}
-  const res = {json: jest.fn()}
+  const req = getReq({user, body: {bookId: book.id}})
+  const res = getRes()
 
   await listItemController.createListItem(req, res)
 
@@ -88,8 +89,8 @@ test('createListItem throws an error if the user already has a list item for the
   const existingListItem = buildListItem({ownerId: user.id, bookId: book.id})
   listItemsDB.query.mockResolvedValueOnce(existingListItem)
 
-  const req = {user, body: {bookId: book.id}}
-  const res = {json: jest.fn(() => res), status: jest.fn(() => res)}
+  const req = getReq({user, body: {bookId: book.id}})
+  const res = getRes()
 
   await listItemController.createListItem(req, res)
   expect(listItemsDB.query).toHaveBeenCalledTimes(1)
@@ -121,12 +122,12 @@ test('updateListItem updates an existing list item', async () => {
   listItemsDB.update.mockResolvedValueOnce(mergedListItemAndUpdates)
   booksDB.readById.mockResolvedValueOnce(book)
 
-  const req = {
+  const req = getReq({
     user,
     params: {id: listItem.id},
     body: updates,
-  }
-  const res = {json: jest.fn(() => res), status: jest.fn(() => res)}
+  })
+  const res = getRes()
 
   await listItemController.updateListItem(req, res)
 
@@ -147,11 +148,11 @@ test('deleteListItem deletes an existing list item', async () => {
   const listItem = buildListItem({ownerId: user.id})
   listItemsDB.remove.mockResolvedValueOnce()
 
-  const req = {
+  const req = getReq({
     user,
     params: {id: listItem.id},
-  }
-  const res = {json: jest.fn(() => res), status: jest.fn(() => res)}
+  })
+  const res = getRes()
 
   await listItemController.deleteListItem(req, res)
 
