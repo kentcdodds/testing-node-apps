@@ -11,7 +11,10 @@ test('responds with 500 and the error object', () => {
   errorMiddleware(error, req, res, next)
   expect(next).not.toHaveBeenCalled()
   expect(res.json).toHaveBeenCalledTimes(1)
-  expect(res.json).toHaveBeenCalledWith({error})
+  expect(res.json).toHaveBeenCalledWith({
+    message: 'blah',
+    stack: expect.any(String),
+  })
 })
 
 test('calls next if headersSent is true', () => {

@@ -1,7 +1,7 @@
 import * as listItemsDB from '../db/list-items'
 import * as booksDB from '../db/books'
 
-async function setListItem(req, res) {
+async function setListItem(req, res, next) {
   const {id} = req.params
   const listItem = await listItemsDB.readById(id)
   if (!listItem) {
@@ -12,6 +12,7 @@ async function setListItem(req, res) {
   }
   if (req.user.id === listItem.ownerId) {
     req.listItem = listItem
+    next()
   } else {
     res.status(403).json({
       message: `User with id ${req.user.id} is not authorized to access the list item ${id}`,
@@ -37,7 +38,7 @@ async function createListItem(req, res) {
     res.status(400).json({message: `No bookId provided`})
     return
   }
-  const existingListItem = await listItemsDB.query({ownerId, bookId})
+  const [existingListItem] = await listItemsDB.query({ownerId, bookId})
   if (existingListItem) {
     res.status(400).json({
       message: `User ${ownerId} already has a list item for the book with the ID ${bookId}`,

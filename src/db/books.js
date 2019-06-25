@@ -18,6 +18,10 @@ async function insertMany(manyBooks) {
   books = [...books, ...manyBooks]
 }
 
-export {readById, readManyById, insertMany, query}
+async function insert(book) {
+  books = [...books, book]
+}
+
+export {readById, readManyById, insertMany, query, insert}
 
 /* eslint require-await:0 */

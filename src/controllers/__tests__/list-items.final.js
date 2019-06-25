@@ -2,7 +2,7 @@
 
 import faker from 'faker'
 import {buildUser, buildBook, buildListItem} from 'utils/generate'
-import {getRes, getReq} from 'utils/middleware'
+import {getRes, getReq, getNext} from 'utils/middleware'
 import * as listItemsDB from '../../db/list-items'
 import * as booksDB from '../../db/books'
 import * as listItemController from '../list-items'
@@ -22,11 +22,14 @@ test('setListItem sets the listItem on the req', async () => {
 
   const req = getReq({user, params: {id: listItem.id}})
   const res = getRes()
+  const next = getNext()
 
-  await listItemController.setListItem(req, res)
+  await listItemController.setListItem(req, res, next)
 
   expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
   expect(listItemsDB.readById).toHaveBeenCalledWith(listItem.id)
+
+  expect(next).toHaveBeenCalledTimes(1)
 
   expect(req.listItem).toBe(listItem)
 })
@@ -146,7 +149,7 @@ test('createListItem creates and returns a list item', async () => {
   const user = buildUser()
   const book = buildBook()
   const createdListItem = buildListItem({ownerId: user.id, bookId: book.id})
-  listItemsDB.query.mockResolvedValueOnce(null)
+  listItemsDB.query.mockResolvedValueOnce([])
   listItemsDB.create.mockResolvedValueOnce(createdListItem)
   booksDB.readById.mockResolvedValueOnce(book)
 
@@ -178,7 +181,7 @@ test('createListItem returns a 400 error if the user already has a list item for
   const user = buildUser({id: 'FAKE_USER_ID'})
   const book = buildBook({id: 'FAKE_BOOK_ID'})
   const existingListItem = buildListItem({ownerId: user.id, bookId: book.id})
-  listItemsDB.query.mockResolvedValueOnce(existingListItem)
+  listItemsDB.query.mockResolvedValueOnce([existingListItem])
 
   const req = getReq({user, body: {bookId: book.id}})
   const res = getRes()

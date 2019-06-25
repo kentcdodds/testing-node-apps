@@ -12,7 +12,7 @@ const getUser = res => res.data.user
 let baseURL, api, authAPI, server, testUser
 
 beforeAll(async () => {
-  server = await startServer({port: 8778})
+  server = await startServer({port: 8000 + Number(process.env.JEST_WORKER_ID)})
   baseURL = `http://localhost:${server.address().port}/api`
   api = axios.create({baseURL})
 })

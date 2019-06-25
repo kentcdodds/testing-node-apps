@@ -25,10 +25,11 @@ async function create(listItemData) {
     ...listItemData,
   }
   listItems = [...listItems, newListItem]
+  return newListItem
 }
 
 async function readById(id) {
-  return query({id})[0]
+  return _.find(listItems, {id})
 }
 
 async function update(listItemId, updates) {
@@ -45,7 +46,7 @@ async function update(listItemId, updates) {
 }
 
 async function remove(id) {
-  listItems = listItems.filter(li => li.id === id)
+  listItems = listItems.filter(li => li.id !== id)
 }
 
 async function insertMany(manyListItems) {
