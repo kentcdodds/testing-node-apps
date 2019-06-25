@@ -1,29 +1,31 @@
 import * as listItemsDB from '../db/list-items'
 import * as booksDB from '../db/books'
 
-async function authorize(req, res, next) {
-  const {ownerId} = await listItemsDB.readById(req.params.id)
-  if (req.user.id === ownerId) {
-    return next()
+async function setListItem(req, res) {
+  const {id} = req.params
+  const listItem = await listItemsDB.readById(id)
+  if (!listItem) {
+    res
+      .status(404)
+      .json({message: `No list item was found with the id of ${id}`})
+    return
+  }
+  if (req.user.id === listItem.ownerId) {
+    req.listItem = listItem
   } else {
-    return res.status(403).json({
-      message: `User with id ${req.user.id} is not authorized to manage the list item ${req.params.id}`,
+    res.status(403).json({
+      message: `User with id ${req.user.id} is not authorized to access the list item ${id}`,
     })
   }
 }
 
 async function getListItems(req, res) {
   const listItems = await listItemsDB.query({ownerId: req.user.id})
-  return res.json({listItems: await expandBookDataMultiple(listItems)})
+  res.json({listItems: await expandBookDataMultiple(listItems)})
 }
 
 async function getListItem(req, res) {
-  const listItem = await listItemsDB.readById(req.params.id)
-  if (listItem) {
-    return res.json({listItem: await expandBookData(listItem)})
-  } else {
-    return res.status(404).json()
-  }
+  res.json({listItem: await expandBookData(req.listItem)})
 }
 
 async function createListItem(req, res) {
@@ -32,33 +34,29 @@ async function createListItem(req, res) {
   } = req
   const {bookId} = req.body
   if (!bookId) {
-    return res.status(400).json({message: `No bookId provided`})
+    res.status(400).json({message: `No bookId provided`})
+    return
   }
   const existingListItem = await listItemsDB.query({ownerId, bookId})
   if (existingListItem) {
-    return res.status(400).json({
+    res.status(400).json({
       message: `User ${ownerId} already has a list item for the book with the ID ${bookId}`,
     })
+    return
   }
 
   const listItem = await listItemsDB.create({ownerId, bookId})
-  return res.json({listItem: await expandBookData(listItem)})
+  res.json({listItem: await expandBookData(listItem)})
 }
 
 async function updateListItem(req, res) {
-  const updatedListItem = await listItemsDB.update(req.params.id, req.body)
-  if (updatedListItem) {
-    return res.json({listItem: await expandBookData(updatedListItem)})
-  } else {
-    return res
-      .status(404)
-      .json({message: `There is no post with the id of ${req.params.id}`})
-  }
+  const updatedListItem = await listItemsDB.update(req.listItem.id, req.body)
+  res.json({listItem: await expandBookData(updatedListItem)})
 }
 
 async function deleteListItem(req, res) {
-  await listItemsDB.remove(req.params.id)
-  return res.json({success: true})
+  await listItemsDB.remove(req.listItem.id)
+  res.json({success: true})
 }
 
 async function expandBookData(listItem) {
@@ -75,7 +73,7 @@ async function expandBookDataMultiple(listItems) {
 }
 
 export {
-  authorize,
+  setListItem,
   getListItems,
   getListItem,
   createListItem,

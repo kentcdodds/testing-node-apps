@@ -9,7 +9,7 @@ function getListItemsRoutes() {
   router.get(
     '/:id',
     authMiddleware.required,
-    listItemsController.authorize,
+    listItemsController.setListItem,
     listItemsController.getListItem,
   )
   router.post('/', authMiddleware.required, listItemsController.createListItem)
@@ -17,14 +17,14 @@ function getListItemsRoutes() {
   router.put(
     '/:id',
     authMiddleware.required,
-    listItemsController.authorize,
+    listItemsController.setListItem,
     listItemsController.updateListItem,
   )
 
   router.delete(
     '/:id',
     authMiddleware.required,
-    listItemsController.authorize,
+    listItemsController.setListItem,
     listItemsController.deleteListItem,
   )
 

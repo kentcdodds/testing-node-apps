@@ -14,6 +14,96 @@ beforeEach(() => {
   jest.clearAllMocks()
 })
 
+test('setListItem sets the listItem on the req', async () => {
+  const user = buildUser()
+  const listItem = buildListItem({ownerId: user.id})
+
+  listItemsDB.readById.mockResolvedValueOnce(listItem)
+
+  const req = getReq({user, params: {id: listItem.id}})
+  const res = getRes()
+
+  await listItemController.setListItem(req, res)
+
+  expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
+  expect(listItemsDB.readById).toHaveBeenCalledWith(listItem.id)
+
+  expect(req.listItem).toBe(listItem)
+})
+
+test('setListItem returns a 404 error if the list item does not exist', async () => {
+  listItemsDB.readById.mockResolvedValueOnce(null)
+
+  const req = getReq({params: {id: 'FAKE_LIST_ITEM_ID'}})
+  const res = getRes()
+
+  await listItemController.setListItem(req, res)
+
+  expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
+  expect(listItemsDB.readById).toHaveBeenCalledWith('FAKE_LIST_ITEM_ID')
+
+  expect(res.status).toHaveBeenCalledTimes(1)
+  expect(res.status).toHaveBeenCalledWith(404)
+  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.json.mock.calls[0]).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "message": "No list item was found with the id of FAKE_LIST_ITEM_ID",
+      },
+    ]
+  `)
+})
+
+test('setListItem returns a 403 error if the list item does not belong to the user', async () => {
+  const user = buildUser({id: 'FAKE_USER_ID'})
+  const listItem = buildListItem({
+    ownerId: 'SOMEONE_ELSE',
+    id: 'FAKE_LIST_ITEM_ID',
+  })
+
+  listItemsDB.readById.mockResolvedValueOnce(listItem)
+
+  const req = getReq({user, params: {id: listItem.id}})
+  const res = getRes()
+
+  await listItemController.setListItem(req, res)
+
+  expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
+  expect(listItemsDB.readById).toHaveBeenCalledWith(listItem.id)
+
+  expect(res.status).toHaveBeenCalledTimes(1)
+  expect(res.status).toHaveBeenCalledWith(403)
+  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.json.mock.calls[0]).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "message": "User with id FAKE_USER_ID is not authorized to access the list item FAKE_LIST_ITEM_ID",
+      },
+    ]
+  `)
+})
+
+test('getListItem returns the req.listItem', async () => {
+  const user = buildUser()
+  const book = buildBook()
+  const listItem = buildListItem({ownerId: user.id, bookId: book.id})
+
+  booksDB.readById.mockResolvedValueOnce(book)
+
+  const req = getReq({user, listItem})
+  const res = getRes()
+
+  await listItemController.getListItem(req, res)
+
+  expect(booksDB.readById).toHaveBeenCalledTimes(1)
+  expect(booksDB.readById).toHaveBeenCalledWith(book.id)
+
+  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.json).toHaveBeenCalledWith({
+    listItem: {...listItem, book},
+  })
+})
+
 test(`getListItems returns a user's list items`, async () => {
   const user = buildUser()
   const books = [buildBook(), buildBook()]
@@ -40,6 +130,7 @@ test(`getListItems returns a user's list items`, async () => {
     userListItems[0].bookId,
     userListItems[1].bookId,
   ])
+  expect(listItemsDB.query).toHaveBeenCalledTimes(1)
   expect(listItemsDB.query).toHaveBeenCalledWith({ownerId: user.id})
   expect(res.json).toHaveBeenCalledTimes(1)
   expect(res.json).toHaveBeenCalledWith({
@@ -83,7 +174,7 @@ test('createListItem creates and returns a list item', async () => {
   expect(res.json).toHaveBeenCalledWith({listItem: {...createdListItem, book}})
 })
 
-test('createListItem throws an error if the user already has a list item for the given book', async () => {
+test('createListItem returns a 400 error if the user already has a list item for the given book', async () => {
   const user = buildUser({id: 'FAKE_USER_ID'})
   const book = buildBook({id: 'FAKE_BOOK_ID'})
   const existingListItem = buildListItem({ownerId: user.id, bookId: book.id})
@@ -111,6 +202,24 @@ test('createListItem throws an error if the user already has a list item for the
   `)
 })
 
+test('createListItem returns a 400 error if no bookId is provided', async () => {
+  const req = getReq()
+  const res = getRes()
+
+  await listItemController.createListItem(req, res)
+
+  expect(res.status).toHaveBeenCalledTimes(1)
+  expect(res.status).toHaveBeenCalledWith(400)
+  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.json.mock.calls[0]).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "message": "No bookId provided",
+      },
+    ]
+  `)
+})
+
 test('updateListItem updates an existing list item', async () => {
   const user = buildUser()
   const book = buildBook()
@@ -124,7 +233,7 @@ test('updateListItem updates an existing list item', async () => {
 
   const req = getReq({
     user,
-    params: {id: listItem.id},
+    listItem,
     body: updates,
   })
   const res = getRes()
@@ -150,7 +259,7 @@ test('deleteListItem deletes an existing list item', async () => {
 
   const req = getReq({
     user,
-    params: {id: listItem.id},
+    listItem,
   })
   const res = getRes()
 
