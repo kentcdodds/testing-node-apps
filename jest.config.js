@@ -1,1 +1,1 @@
-module.exports = require('./test/jest.config.exercises')
+module.exports = require('./test/jest.config.final')

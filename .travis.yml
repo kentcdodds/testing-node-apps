@@ -13,4 +13,4 @@ branches:
 script:
   - npm run setup
 after_success:
-  - npx codecov --file coverage/final/coverage-final.json
+  - npx codecov
