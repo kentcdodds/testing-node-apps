@@ -33,9 +33,9 @@
 ## Schedule
 
 - 😴 Logistics
-- 🏋 Testing Pure Functions
+- 🏋 Testing Pure Functions (`src/utils/__tests__/auth.md`)
 - 😴 10 Minutes
-- 🏋 Testing Middleware
+- 🏋 Testing Middleware (`src/utils/__tests__/error-middleware.md`)
 - 😴 30 Minutes
 - 🏋 Testing Controllers
 - 😴 10 Minutes

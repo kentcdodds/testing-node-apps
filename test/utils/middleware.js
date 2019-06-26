@@ -7,15 +7,15 @@ function getReq({user = buildUser(), ...overrides} = {}) {
 
 function getRes(overrides = {}) {
   const res = {
-    json: jest.fn(() => res),
-    status: jest.fn(() => res),
+    json: jest.fn(() => res).mockName('json'),
+    status: jest.fn(() => res).mockName('status'),
     ...overrides,
   }
   return res
 }
 
 function getNext(impl) {
-  return jest.fn(impl)
+  return jest.fn(impl).mockName('next')
 }
 
 export {getReq, getRes, getNext}

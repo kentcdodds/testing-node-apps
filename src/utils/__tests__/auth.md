@@ -57,7 +57,8 @@ For us to be confident that `isPasswordAllowed` will continue to function as
 expected, we should have a test case for each of these (as well as one which
 does pass the requirements).
 
-Your job is to completely test the `isPasswordAllowed` function.
+Your job is to completely test the `isPasswordAllowed` function in
+`src/utils/__tests__/auth.exercise.js`.
 
 ## Extra Credit
 

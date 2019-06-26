@@ -6,12 +6,14 @@ function getListItemsRoutes() {
   const router = express.Router()
 
   router.get('/', authMiddleware, listItemsController.getListItems)
+
   router.get(
     '/:id',
     authMiddleware,
     listItemsController.setListItem,
     listItemsController.getListItem,
   )
+
   router.post('/', authMiddleware, listItemsController.createListItem)
 
   router.put(
