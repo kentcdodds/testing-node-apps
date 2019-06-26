@@ -37,11 +37,11 @@
 - 😴 10 Minutes
 - 🏋 Testing Middleware (`src/utils/__tests__/error-middleware.md`)
 - 😴 30 Minutes
-- 🏋 Testing Controllers
+- 🏋 Testing Controllers (`src/routes/__tests__/list-items.md`)
 - 😴 10 Minutes
-- 🏋 Testing API routes
+- 🏋 Testing API routes (Part 1)
 - 😴 10 Minutes
-- 🏋 Exercises
+- 🏋 Testing API routes (Part 2)
 - ❓ Q&A
 
 ## Scripts
