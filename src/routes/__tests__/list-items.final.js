@@ -5,7 +5,7 @@ import {buildUser, buildBook, buildListItem} from 'utils/generate'
 import {getRes, getReq, getNext} from 'utils/middleware'
 import * as listItemsDB from '../../db/list-items'
 import * as booksDB from '../../db/books'
-import * as listItemController from '../list-items'
+import * as listItemController from '../list-items-controller'
 
 jest.mock('../../db/list-items')
 jest.mock('../../db/books')

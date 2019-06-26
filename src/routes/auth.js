@@ -1,6 +1,6 @@
 import express from 'express'
 import {authMiddleware} from '../utils/auth'
-import * as authController from '../controllers/auth'
+import * as authController from './auth-controller'
 
 function getAuthRoutes() {
   const router = express.Router()

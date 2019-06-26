@@ -1,6 +1,6 @@
 import express from 'express'
 import {authMiddleware} from '../utils/auth'
-import * as listItemsController from '../controllers/list-items'
+import * as listItemsController from './list-items-controller'
 
 function getListItemsRoutes() {
   const router = express.Router()

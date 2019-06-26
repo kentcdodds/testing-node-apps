@@ -1,1 +1,1 @@
-module.exports = require('./test/jest.config.final')
+module.exports = require('./test/jest.config.projects')
