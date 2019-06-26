@@ -1,13 +1,11 @@
 import axios from 'axios'
 import faker from 'faker'
 import {resetDb} from 'utils/db-utils'
+import {getData, handleRequestFailure, resolve} from 'utils/async'
 import * as generate from 'utils/generate'
 import * as booksDB from '../db/books'
 import {getUserToken} from '../utils/auth'
 import startServer from '../start'
-
-const getData = res => res.data
-const getError = error => error.response
 
 let baseURL, authAPI, server, testUser
 
@@ -24,6 +22,7 @@ beforeEach(async () => {
   const token = getUserToken(testUser)
   authAPI = axios.create({baseURL})
   authAPI.defaults.headers.common.authorization = `Bearer ${token}`
+  authAPI.interceptors.response.use(getData, handleRequestFailure)
 })
 
 test('listItem CRUD', async () => {
@@ -31,27 +30,37 @@ test('listItem CRUD', async () => {
   await booksDB.insert(book)
 
   // CREATE
-  const cResult = await authAPI
-    .post('list-items', {bookId: book.id})
-    .then(getData)
+  const cResult = await authAPI.post('list-items', {bookId: book.id})
+
   expect(cResult.listItem).toMatchObject({
     ownerId: testUser.id,
     bookId: book.id,
   })
-  const listItemIdUrl = `list-items/${cResult.listItem.id}`
+  const listItemId = cResult.listItem.id
+  const listItemIdUrl = `list-items/${listItemId}`
 
   // READ
-  const rResult = await authAPI.get(listItemIdUrl).then(getData)
+  const rResult = await authAPI.get(listItemIdUrl)
   expect(rResult.listItem).toEqual(cResult.listItem)
 
   // UPDATE
   const updates = {notes: faker.lorem.paragraph()}
-  const uResult = await authAPI.put(listItemIdUrl, updates).then(getData)
+  const uResult = await authAPI.put(listItemIdUrl, updates)
   expect(uResult.listItem).toEqual({...rResult.listItem, ...updates})
 
   // DELETE
-  const dResult = await authAPI.delete(listItemIdUrl).then(getData)
+  const dResult = await authAPI.delete(listItemIdUrl)
   expect(dResult).toEqual({success: true})
-  const error = await authAPI.get(listItemIdUrl).catch(getError)
-  expect(error.status).toBe(404) // it's no longer available
+  const error = await authAPI.get(listItemIdUrl).catch(resolve)
+  expect(error.status).toBe(404)
+  expect(error.data).toEqual({
+    message: expect.stringContaining('No list item was found with the id of'),
+  })
+
+  // because the ID is generated, we need to replace it in the error message
+  // so our snapshot remains consistent
+  const idlessMessage = error.data.message.replace(listItemId, 'LIST_ITEM_ID')
+  expect(idlessMessage).toMatchInlineSnapshot(
+    `"No list item was found with the id of LIST_ITEM_ID"`,
+  )
 })

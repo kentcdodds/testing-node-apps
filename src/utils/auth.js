@@ -7,7 +7,8 @@ import * as usersDB from '../db/users'
 
 const secret = 'secret'
 
-const iterations = process.env.NODE_ENV === 'production' ? 100000 : 1
+// reducing the iterations to 1 in non-production environments to make it faster
+const iterations = process.env.NODE_ENV === 'production' ? 1000 : 1
 
 // seconds/minute * minutes/hour * hours/day * 60 days
 const sixtyDaysInSeconds = 60 * 60 * 24 * 60
@@ -45,15 +46,7 @@ function getUserToken({id, username}) {
   )
 }
 
-const authMiddleware = {
-  required: expressJWT({
-    secret,
-  }),
-  optional: expressJWT({
-    secret,
-    credentialsRequired: false,
-  }),
-}
+const authMiddleware = expressJWT({secret})
 
 function getLocalStrategy() {
   return new LocalStrategy(async (username, password, done) => {
@@ -65,7 +58,7 @@ function getLocalStrategy() {
     }
     if (!user || !isPasswordValid(password, user)) {
       return done(null, false, {
-        errors: {'username or password': 'is invalid'},
+        message: 'username or password is invalid',
       })
     }
     return done(null, userToJSON(user))

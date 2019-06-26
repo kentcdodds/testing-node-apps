@@ -7,7 +7,7 @@ function getAuthRoutes() {
 
   router.post('/register', authController.register)
   router.post('/login', authController.login)
-  router.get('/me', authMiddleware.required, authController.me)
+  router.get('/me', authMiddleware, authController.me)
 
   return router
 }

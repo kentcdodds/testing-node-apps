@@ -1,7 +1,9 @@
 import faker from 'faker'
 import {getUserToken, getSaltAndHash} from '../../src/utils/auth'
 
-const getPassword = faker.internet.password
+// passwords must have at least these kinds of characters to be valid, so we'll
+// prefex all of the ones we generate with `!0_Oo` to ensure it's valid.
+const getPassword = (...args) => `!0_Oo${faker.internet.password(...args)}`
 const getUsername = faker.internet.userName
 const getId = faker.random.uuid
 

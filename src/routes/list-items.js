@@ -5,25 +5,25 @@ import * as listItemsController from '../controllers/list-items'
 function getListItemsRoutes() {
   const router = express.Router()
 
-  router.get('/', authMiddleware.required, listItemsController.getListItems)
+  router.get('/', authMiddleware, listItemsController.getListItems)
   router.get(
     '/:id',
-    authMiddleware.required,
+    authMiddleware,
     listItemsController.setListItem,
     listItemsController.getListItem,
   )
-  router.post('/', authMiddleware.required, listItemsController.createListItem)
+  router.post('/', authMiddleware, listItemsController.createListItem)
 
   router.put(
     '/:id',
-    authMiddleware.required,
+    authMiddleware,
     listItemsController.setListItem,
     listItemsController.updateListItem,
   )
 
   router.delete(
     '/:id',
-    authMiddleware.required,
+    authMiddleware,
     listItemsController.setListItem,
     listItemsController.deleteListItem,
   )

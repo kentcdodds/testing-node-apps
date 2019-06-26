@@ -1,7 +1,21 @@
 // Test Middleware
 
 import {getRes, getReq, getNext} from 'utils/middleware'
+import {UnauthorizedError} from 'express-jwt'
 import errorMiddleware from '../error-middleware'
+
+test('responds with 401 for express-jwt UnauthorizedError', () => {
+  const req = getReq()
+  const res = getRes()
+  const next = getNext()
+  const code = 'fake_code'
+  const message = 'Fake Error Message'
+  const error = new UnauthorizedError(code, {message})
+  errorMiddleware(error, req, res, next)
+  expect(next).not.toHaveBeenCalled()
+  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.json).toHaveBeenCalledWith({code, message})
+})
 
 test('responds with 500 and the error object', () => {
   const req = getReq()
