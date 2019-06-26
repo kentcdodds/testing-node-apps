@@ -44,10 +44,10 @@ The more prepared you are for the workshop, the better it will go for you.
 
 Here are the topics we'll be covering:
 
-- Write unit tests for pure functions
-- Write unit tests for "Controller" modules
-- Write unit tests for Express.js middleware
-- Write integration for API routes
+- Testing Pure Functions
+- Testing Middleware
+- Testing Controllers
+- Testing API routes
 - Mocking third party dependencies
 - Testing authenticated code
 

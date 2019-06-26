@@ -33,13 +33,13 @@
 ## Schedule
 
 - 😴 Logistics
-- 🏋 Exercises
+- 🏋 Testing Pure Functions
 - 😴 10 Minutes
-- 🏋 Exercises
+- 🏋 Testing Middleware
 - 😴 30 Minutes
-- 🏋 Exercises
+- 🏋 Testing Controllers
 - 😴 10 Minutes
-- 🏋 Exercises
+- 🏋 Testing API routes
 - 😴 10 Minutes
 - 🏋 Exercises
 - ❓ Q&A

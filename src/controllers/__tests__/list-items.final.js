@@ -1,4 +1,4 @@
-// Testing Controller modules
+// Testing Controllers
 
 import faker from 'faker'
 import {buildUser, buildBook, buildListItem} from 'utils/generate'

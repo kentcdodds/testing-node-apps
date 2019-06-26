@@ -1,4 +1,4 @@
-// Unit Testing Pure Functions
+// Testing Pure Functions
 // 💯 improved titles for jest-in-case
 
 import cases from 'jest-in-case'

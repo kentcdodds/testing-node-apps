@@ -1,4 +1,4 @@
-// Unit Testing Pure Functions
+// Testing Pure Functions
 // 💯 reduce duplication
 
 import {isPasswordAllowed} from '../auth'

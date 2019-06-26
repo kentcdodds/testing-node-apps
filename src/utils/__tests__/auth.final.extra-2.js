@@ -1,4 +1,4 @@
-// Unit Testing Pure Functions
+// Testing Pure Functions
 // 💯 jest-in-case
 
 import cases from 'jest-in-case'

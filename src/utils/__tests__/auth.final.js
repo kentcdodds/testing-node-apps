@@ -1,4 +1,4 @@
-// Unit Testing Pure Functions
+// Testing Pure Functions
 
 import {isPasswordAllowed} from '../auth'
 

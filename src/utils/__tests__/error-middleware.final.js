@@ -1,4 +1,4 @@
-// Test Middleware
+// Testing Middleware
 
 import {getRes, getReq, getNext} from 'utils/middleware'
 import {UnauthorizedError} from 'express-jwt'
