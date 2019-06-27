@@ -30,8 +30,12 @@ test('getListItem returns the req.listItem', async () => {
   // 💰 use mockResolvedValueOnce
   //
   // 🐨 make a request object that has properties for the user and listItem
+  // 💰 checkout the implementation of getListItem in ../list-items-controller
+  // to see how the request object is used and what properties it needs.
+  // 💰 and you can use buildReq from utils/generate
   //
   // 🐨 make a response object
+  // 💰 just use buildRes from utils/generate
   //
   // 🐨 make a call to getListItem with the req and res (`await` the result)
   //
