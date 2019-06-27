@@ -6,9 +6,11 @@
 
 // 🐨 getListItem calls `expandBookData` which calls `booksDB.readById`
 // so you'll need to import the booksDB from '../../db/books'
+// 💰 import * as booksDB from '../../db/books'
 
 // 🐨 don't forget to import the listItemsController from '../list-items-controller'
 // here, that's the thing we're testing afterall :)
+// 💰 import * as listItemsController from '../list-items-controller'
 
 // 🐨 use jest.mock to mock '../../books' because we don't actually want to make
 // database calls in this test file.
