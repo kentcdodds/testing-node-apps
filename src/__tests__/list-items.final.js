@@ -10,10 +10,7 @@ import startServer from '../start'
 let baseURL, server
 
 beforeAll(async () => {
-  // Note: normally you'll want to keep your port base the same across all the tests
-  // to avoid collisions. I'm setting this to 8400 because we actually do have collisions
-  // in the files where I was teaching you that 😅
-  server = await startServer({port: 8400 + Number(process.env.JEST_WORKER_ID)})
+  server = await startServer()
   baseURL = `http://localhost:${server.address().port}/api`
 })
 

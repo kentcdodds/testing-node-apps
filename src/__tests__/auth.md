@@ -149,19 +149,28 @@ Give that a try!
 
 ### 💯 Ensure a unique server port
 
-Even though our `startServer` function is using `detect-port` to determine what
-port to bind to (if none is provided), we're providing one explicitly thinks to
-race condition issues. However, we need to make sure that every test has a
-unique port for the server, otherwise we can't run our tests in parallel without
-servers trying to bind to the same port.
+We need to make sure that every test has a unique port for the server, otherwise
+we can't run our tests in parallel without servers trying to bind to the same
+port.
 
 To solve this, we can dynamically determine the port based on
 `process.env.JEST_WORKER_ID` which is a number that indicates the worker
-"thread" for our current process. See if you can dynamically determine the port
-so you avoid this problem.
+"thread" for our current process.
 
-> Note, everything in `process.env` is a string, so you'll need to convert it to
-> a number, then you can add that number to `8000` or something.
+Our `startServer` implementation will default to `process.env.PORT` if it's
+available. Well guess what! It is! Checkout `test/setup-env.js` and you'll
+notice that we're setting the PORT variable based on the JEST_WORKER_ID. So you
+can use that!
+
+The trick will be getting and using the port that the server is listening on so
+you make the request to the right place. Here's how you do that:
+
+```javascript
+server.address().port
+```
+
+So now try to make things work without providing a port to the `server` and
+letting the default port be used.
 
 ### 💯 Interact directly with the database
 

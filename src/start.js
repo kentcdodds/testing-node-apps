@@ -4,13 +4,11 @@ import cors from 'cors'
 import passport from 'passport'
 import logger from 'loglevel'
 import 'express-async-errors'
-import detectPort from 'detect-port'
 import {getLocalStrategy} from './utils/auth'
 import errorMiddleware from './utils/error-middleware'
 import getRouter from './routes'
 
-async function startServer({port = process.env.SERVER_PORT} = {}) {
-  port = port || (await detectPort(8888))
+function startServer({port = process.env.PORT} = {}) {
   const app = express()
   app.use(cors())
   app.use(bodyParser.json())

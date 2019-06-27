@@ -10,7 +10,7 @@ import startServer from '../start'
 let baseURL, server
 
 beforeAll(async () => {
-  server = await startServer({port: 8000 + Number(process.env.JEST_WORKER_ID)})
+  server = await startServer()
   baseURL = `http://localhost:${server.address().port}/api`
 })
 

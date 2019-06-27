@@ -14,6 +14,7 @@ module.exports = {
   coverageDirectory: path.join(__dirname, '../coverage'),
   collectCoverageFrom: ['**/src/**/*.js'],
   coveragePathIgnorePatterns: ['.*/__tests__/.*'],
+  setupFilesAfterEnv: [require.resolve('./setup-env')],
   watchPlugins: [
     require.resolve('jest-watch-typeahead/filename'),
     require.resolve('jest-watch-typeahead/testname'),
