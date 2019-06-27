@@ -126,7 +126,7 @@ markdown file associated with each.
 
 1.  🏋 Testing Pure Functions: `src/utils/__tests__/auth.md`
 2.  🏋 Testing Middleware: `src/utils/__tests__/error-middleware.md`
-3.  🏋 Testing Controllers: `src/routes/__tests__/list-items.md`
+3.  🏋 Testing Controllers: `src/routes/__tests__/list-items-controller.md`
 4.  🏋 Testing Authentication API Routes: `src/__tests__/auth.md`
 5.  🏋 Testing CRUD API Routes: `src/__tests__/list-items.md`
 
