@@ -91,9 +91,6 @@ afterAll(async () => {
 })
 ```
 
-> This isn't quite what you'll be doing, but hopefully it gives you a good idea
-> of how this works
-
 We'll also be using
 [`beforeEach`](https://jestjs.io/docs/en/api#beforeeachfn-timeout) to reset the
 database between each test. It functions similar to `beforeAll` except it's run
