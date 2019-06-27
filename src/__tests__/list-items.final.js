@@ -42,13 +42,13 @@ test('listItem CRUD', async () => {
   const listItemIdUrl = `list-items/${listItemId}`
 
   // READ
-  const rResult = await authAPI.get(listItemIdUrl)
-  expect(rResult.listItem).toEqual(cResult.listItem)
+  const rData = await authAPI.get(listItemIdUrl)
+  expect(rData.listItem).toEqual(cResult.listItem)
 
   // UPDATE
   const updates = {notes: faker.lorem.paragraph()}
   const uResult = await authAPI.put(listItemIdUrl, updates)
-  expect(uResult.listItem).toEqual({...rResult.listItem, ...updates})
+  expect(uResult.listItem).toEqual({...rData.listItem, ...updates})
 
   // DELETE
   const dResult = await authAPI.delete(listItemIdUrl)
