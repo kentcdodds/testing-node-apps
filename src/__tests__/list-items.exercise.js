@@ -41,6 +41,8 @@ test('listItem CRUD', async () => {
 
   // 🐨 assert that the data you get back is correct
   // 💰 it should have an ownerId (testUser.id) and a bookId (book.id)
+  // 💰 if you don't want to assert on all the other properties, you can use
+  // toMatchObject: https://jestjs.io/docs/en/expect#tomatchobjectobject
 
   // 💰 you might find this useful for the future requests:
   // const listItemId = cData.listItem.id
