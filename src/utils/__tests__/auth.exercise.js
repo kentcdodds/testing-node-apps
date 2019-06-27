@@ -18,4 +18,4 @@ test.todo('remove me')
 // - ABCdef! // no numbers
 // - abc123! // no uppercase letters
 // - ABC123! // no lowercase letters
-// - ABCdef123' // no non-alphanumeric characters
+// - ABCdef123 // no non-alphanumeric characters
