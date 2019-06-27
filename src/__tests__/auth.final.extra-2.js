@@ -36,9 +36,7 @@ test('auth flow', async () => {
   expect(lData.user).toEqual(rData.user)
 
   // authenticated request
-  const mData = await api({
-    url: 'auth/me',
-    method: 'GET',
+  const mData = await api.get('auth/me', {
     headers: {
       Authorization: `Bearer ${lData.user.token}`,
     },

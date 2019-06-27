@@ -112,15 +112,6 @@ Here's an example of the API:
 
 ```javascript
 const result = await axios.post('http://example.com/api/endpoint', data)
-// or
-const result = await axios.post({
-  method: 'POST',
-  url: 'http://example.com/api/endpoint',
-  data,
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-})
 ```
 
 You'll be using both of these APIs in this exercise.

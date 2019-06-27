@@ -38,10 +38,10 @@ test('auth flow', async () => {
   // the data of those results with toEqual
   //
   // authenticated request
-  // 🐨 use axios({}) to GET the user's information
+  // 🐨 use axios.get(url, config) to GET the user's information
   // 💰 http://localhost:8000/api/auth/me
-  // 💰 This request must be authenticated via the Authorization header
-  // (similar to what the example shows in the markdown file for this exercise).
+  // 💰 This request must be authenticated via the Authorization header which
+  // you can add to the config object: {headers: {Authorization: `Bearer ${token}`}}
   // Remember that you have the token from the registration and login requests.
   //
   // 🐨 assert that the result you get back is correct

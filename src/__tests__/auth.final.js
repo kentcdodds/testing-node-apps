@@ -37,9 +37,7 @@ test('auth flow', async () => {
   expect(lResult.data.user).toEqual(rResult.data.user)
 
   // authenticated request
-  const mResult = await axios({
-    url: 'http://localhost:8000/api/auth/me',
-    method: 'GET',
+  const mResult = await axios.get('http://localhost:8000/api/auth/me', {
     headers: {
       Authorization: `Bearer ${lResult.data.user.token}`,
     },
