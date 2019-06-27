@@ -5,6 +5,7 @@ import {omit} from 'lodash'
 import jwt from 'jsonwebtoken'
 import * as usersDB from '../db/users'
 
+// in a real app this would be set in an environment variable
 const secret = 'secret'
 
 // reducing the iterations to 1 in non-production environments to make it faster
