@@ -10,6 +10,8 @@ import startServer from '../start'
 let baseURL, api, server
 
 beforeAll(async () => {
+  // NOTE: I set the port here to 8001 so we don't conflict with the other
+  // files. We'll solve this problem in another extra credit
   server = await startServer({port: 8001})
   baseURL = 'http://localhost:8001/api'
   api = axios.create({baseURL})

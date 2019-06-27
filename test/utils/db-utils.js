@@ -2,6 +2,7 @@ import _ from 'lodash'
 import * as booksDB from '../../src/db/books'
 import * as usersDB from '../../src/db/users'
 import * as listItemsDB from '../../src/db/list-items'
+import {getUserToken} from '../../src/utils/auth'
 import * as generate from './generate'
 
 async function initDb({
@@ -34,12 +35,11 @@ async function insertTestUser(
   }),
 ) {
   await usersDB.insert(testUser)
-  return testUser
+  return {...testUser, token: getUserToken(testUser)}
 }
 
-async function resetDb({books, users, listItems} = {}) {
-  await initDb({books, users, listItems})
-  return {books: booksDB.query()}
+function resetDb() {
+  return initDb({books: [], users: [], listItems: []})
 }
 
 export {resetDb, initDb, insertTestUser, generate}

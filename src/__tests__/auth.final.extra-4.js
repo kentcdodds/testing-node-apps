@@ -11,7 +11,7 @@ import startServer from '../start'
 let baseURL, api, server
 
 beforeAll(async () => {
-  server = await startServer({port: 8002 + Number(process.env.JEST_WORKER_ID)})
+  server = await startServer({port: 8300 + Number(process.env.JEST_WORKER_ID)})
   baseURL = `http://localhost:${server.address().port}/api`
   api = axios.create({baseURL})
   api.interceptors.response.use(getData, handleRequestFailure)

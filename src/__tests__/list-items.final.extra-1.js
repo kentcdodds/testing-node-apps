@@ -1,4 +1,5 @@
 // Testing CRUD API Routes
+// 💯 snapshot the error message with dynamic data
 
 import axios from 'axios'
 import {resetDb, insertTestUser} from 'utils/db-utils'
@@ -58,7 +59,11 @@ test('listItem CRUD', async () => {
   expect(dData).toEqual({success: true})
   const error = await authAPI.get(listItemIdUrl).catch(resolve)
   expect(error.status).toBe(404)
-  expect(error.data).toEqual({
-    message: expect.stringContaining('No list item was found with the id of'),
-  })
+
+  // because the ID is generated, we need to replace it in the error message
+  // so our snapshot remains consistent
+  const idlessMessage = error.data.message.replace(listItemId, 'LIST_ITEM_ID')
+  expect(idlessMessage).toMatchInlineSnapshot(
+    `"No list item was found with the id of LIST_ITEM_ID"`,
+  )
 })
