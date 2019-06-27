@@ -27,6 +27,10 @@ the list item, so a snapshot would fail every time we run this.
 See if you can figure out how to still take a snapshot of the error so we don't
 have to worry about hard-coding the error message in our assertion.
 
+> 🔥 REMEMBER: If you're using codesandbox to go through this, the code update
+> will not appear automatically, but it has happened! Just close and re-open the
+> file and you'll get the update.
+
 ## 🦉 Elaboration & Feedback
 
 After the instruction, copy the URL below into your browser:

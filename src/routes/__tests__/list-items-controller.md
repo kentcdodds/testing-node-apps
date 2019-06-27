@@ -164,6 +164,10 @@ include a serialized version of `error.message`!
 expect(error.message).toMatchInlineSnapshot(`"No username provided"`)
 ```
 
+> 🔥 NOTE: If you're using codesandbox to go through this, the code update will
+> not appear automatically, but it has happened! Just close and re-open the file
+> and you'll get the update.
+
 I love this feature.
 
 > Note, there's also `toMatchSnapshot` which places the snapshot in a separate
