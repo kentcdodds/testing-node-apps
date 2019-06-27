@@ -12,7 +12,7 @@
 // here, that's the thing we're testing afterall :)
 // 💰 import * as listItemsController from '../list-items-controller'
 
-// 🐨 use jest.mock to mock '../../books' because we don't actually want to make
+// 🐨 use jest.mock to mock '../../db/books' because we don't actually want to make
 // database calls in this test file.
 
 // 🐨 ensure that all mock functions have their call history cleared using
