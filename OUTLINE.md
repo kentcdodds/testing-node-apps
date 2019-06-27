@@ -33,15 +33,15 @@
 ## Schedule
 
 - 😴 Logistics
-- 🏋 Testing Pure Functions (`src/utils/__tests__/auth.md`)
+- 🏋 Testing Pure Functions
 - 😴 10 Minutes
-- 🏋 Testing Middleware (`src/utils/__tests__/error-middleware.md`)
+- 🏋 Testing Middleware
 - 😴 30 Minutes
-- 🏋 Testing Controllers (`src/routes/__tests__/list-items.md`)
+- 🏋 Testing Controllers
 - 😴 10 Minutes
-- 🏋 Testing Authentication API Routes (`src/__tests__/auth.md`)
+- 🏋 Testing Authentication API Routes
 - 😴 10 Minutes
-- 🏋 Testing CRUD API Routes (`src/__tests__/list-items.md`)
+- 🏋 Testing CRUD API Routes
 - ❓ Q&A
 
 ## Scripts
@@ -59,11 +59,47 @@ Please do ask! Interrupt me. If you have an unrelated question, please ask on
 - Keep microphone muted unless speaking
 - Breakout rooms
 
-## Exercises
+## App Intro
 
-- `src/exercises/0x.md`: Background, Exercise Instructions, Extra Credit
-- `src/exercises/0x.test.js`: Exercise with Emoji helpers
-- `src/exercises-final/0x.test.js`: Final version
+### App Demo
+
+This is the backend for [Bookshelf](https://the-react-bookshelf.netlify.com/). I
+recommend you play around with it a little bit to get an idea of the kind of
+data we're dealing with here.
+
+### Data Model
+
+- User
+
+  - id: string
+  - username: string
+
+- List Item
+
+  - id: string
+  - bookId: string
+  - ownerId: string
+  - rating: number (-1 is no rating, otherwise it's 1-5)
+  - notes: string
+  - startDate: number (`Date.now()`)
+  - finishDate: number (`Date.now()`)
+
+> For convenience, our we return a `book` object on each list item which is the
+> book it's associated to. You're welcome frontend folks!
+
+> /me wishes we could use GraphQL
+
+If your "database" gets out of whack, you can purge it via:
+
+- Book
+
+  - id: string
+  - title: string
+  - author: string
+  - coverImageUrl: string
+  - pageCount: number
+  - publisher: string
+  - synopsis: string
 
 ## Emoji
 
@@ -74,6 +110,25 @@ Please do ask! Interrupt me. If you have an unrelated question, please ask on
 - **Dominic the Document** 📜 "Docs links"
 - **Berry the Bomb** 💣 "Remove this code"
 - **Alfred the Alert** 🚨 "Extra helpful in test errors"
+
+## Exercises
+
+Here are the kinds of files you'll be working with:
+
+- `src/**/__tests__/[title].md`: Background, Exercise Instructions, Extra Credit
+- `src/**/__tests__/[title].exercise.js`: Exercise with Emoji helpers
+- `src/**/__tests__/[title].final.js`: Final version
+- `src/**/__tests__/[title].final.extra-#.js`: Final version of extra credit
+- `src/**/[title].js`: The source file that you'll be testing
+
+Here's the order of exercises we'll be doing as well as where you can find the
+markdown file associated with each.
+
+1.  🏋 Testing Pure Functions: `src/utils/__tests__/auth.md`
+2.  🏋 Testing Middleware: `src/utils/__tests__/error-middleware.md`
+3.  🏋 Testing Controllers: `src/routes/__tests__/list-items.md`
+4.  🏋 Testing Authentication API Routes: `src/__tests__/auth.md`
+5.  🏋 Testing CRUD API Routes: `src/__tests__/list-items.md`
 
 ## Workshop Feedback
 
