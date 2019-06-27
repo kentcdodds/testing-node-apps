@@ -7,7 +7,7 @@ import * as booksDB from '../db/books'
 import {getUserToken} from '../utils/auth'
 import startServer from '../start'
 
-let baseURL, authAPI, server, testUser
+let baseURL, server
 
 beforeAll(async () => {
   server = await startServer({port: 8000 + Number(process.env.JEST_WORKER_ID)})
@@ -16,16 +16,18 @@ beforeAll(async () => {
 
 afterAll(() => server.close())
 
-beforeEach(async () => {
-  testUser = generate.buildUser({id: generate.id()})
+async function setup() {
+  const testUser = generate.buildUser({id: generate.id()})
   await resetDb({testUser})
   const token = getUserToken(testUser)
-  authAPI = axios.create({baseURL})
+  const authAPI = axios.create({baseURL})
   authAPI.defaults.headers.common.authorization = `Bearer ${token}`
   authAPI.interceptors.response.use(getData, handleRequestFailure)
-})
+  return {testUser, authAPI}
+}
 
 test('listItem CRUD', async () => {
+  const {testUser, authAPI} = await setup()
   const book = generate.buildBook()
   await booksDB.insert(book)
 

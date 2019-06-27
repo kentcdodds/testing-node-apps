@@ -1,12 +1,13 @@
+// Testing Authentication API Routes
+
 import axios from 'axios'
 import {resetDb} from 'utils/db-utils'
 import * as generate from 'utils/generate'
 import {getData, handleRequestFailure, resolve} from 'utils/async'
 import * as usersDB from '../db/users'
-import {getUserToken} from '../utils/auth'
 import startServer from '../start'
 
-let baseURL, api, authAPI, server, testUser
+let baseURL, api, server
 
 beforeAll(async () => {
   server = await startServer({port: 8000 + Number(process.env.JEST_WORKER_ID)})
@@ -17,14 +18,7 @@ beforeAll(async () => {
 
 afterAll(() => server.close())
 
-beforeEach(async () => {
-  testUser = generate.buildUser({id: generate.id()})
-  await resetDb({testUser})
-  const token = getUserToken(testUser)
-  authAPI = axios.create({baseURL})
-  authAPI.defaults.headers.common.authorization = `Bearer ${token}`
-  authAPI.interceptors.response.use(getData, handleRequestFailure)
-})
+beforeEach(() => resetDb())
 
 test('auth flow', async () => {
   const {username, password} = generate.loginForm()
