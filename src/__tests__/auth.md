@@ -33,8 +33,10 @@ The biggest challenge you face with tests like this are:
 1. They take more setup
 2. They have more points of failure
 
-That said, they give you a huge amount of confidence for the effort, which is
-why I recommend focusing on them.
+That said, they give you a huge amount of confidence for the effort and give you
+fewer false negatives and false positives, which is why I recommend focusing on
+them. (For more on this, read
+[Testing Implementation Details](https://kentcdodds.com/blog/testing-implementation-details)).
 
 The setup required includes getting the server started. The way I've structured
 it for this project is the way I recommend structuring it for all Node apps as
