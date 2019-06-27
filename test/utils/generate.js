@@ -6,6 +6,8 @@ import {getUserToken, getSaltAndHash} from '../../src/utils/auth'
 const getPassword = (...args) => `!0_Oo${faker.internet.password(...args)}`
 const getUsername = faker.internet.userName
 const getId = faker.random.uuid
+const getSynopsis = faker.lorem.paragraph
+const getNotes = faker.lorem.paragraph
 
 function buildUser({password = getPassword(), ...overrides} = {}) {
   return {
@@ -41,7 +43,7 @@ function buildListItem(overrides = {}) {
     bookId,
     ownerId: owner.id,
     rating: faker.random.number(5),
-    notes: faker.random.boolean() ? '' : faker.lorem.paragraph(),
+    notes: faker.random.boolean() ? '' : getNotes(),
     finishDate,
     startDate,
     ...overrides,
@@ -60,7 +62,28 @@ function loginForm(overrides) {
   }
 }
 
+function buildReq({user = buildUser(), ...overrides} = {}) {
+  const req = {user, body: {}, params: {}, ...overrides}
+  return req
+}
+
+function buildRes(overrides = {}) {
+  const res = {
+    json: jest.fn(() => res).mockName('json'),
+    status: jest.fn(() => res).mockName('status'),
+    ...overrides,
+  }
+  return res
+}
+
+function buildNext(impl) {
+  return jest.fn(impl).mockName('next')
+}
+
 export {
+  buildReq,
+  buildRes,
+  buildNext,
   buildUser,
   buildListItem,
   buildBook,
@@ -69,4 +92,6 @@ export {
   getPassword as password,
   getUsername as username,
   getId as id,
+  getSynopsis as synopsis,
+  getNotes as notes,
 }

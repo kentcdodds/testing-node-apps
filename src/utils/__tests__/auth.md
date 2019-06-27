@@ -132,3 +132,8 @@ The naive implementation of `jest-in-case` here may result in good, but still
 imperfect test names which has an impact on the error messages you'll get. Try
 to make it so the test name includes not only the reason a given password is
 valid/invalid, but also what the password is.
+
+## 🦉 Elaboration & Feedback
+
+After the instruction, copy the URL below into your browser:
+http://ws.kcd.im/?ws=Testing%20Node%20Apps&e=Testing%20Pure%20Functions&em=

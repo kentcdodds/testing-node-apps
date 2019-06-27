@@ -125,14 +125,20 @@ as common across these tests.
 > things worse. Keep them really simple and if you have to, make different
 > factories for creating different kinds of test objects.
 
-### 💯 use `utils/middleware`
+### 💯 use `utils/generate`
 
 There are some test object factories that are useful throughout the testbase.
 The `req`, `res`, and `next` arguments definitely fall into this category. In
 fact we've already written test object factories for them! They're in the
-`test/utils/middleware.js` file.
+`test/utils/generate.js` file.
 
 For this extra credit, use those test object factories.
 
 💰 tip, because the way Jest is configured in this project, you can import that
-directly like this: `import {getRes, getReq, getNext} from 'utils/middleware'`
+directly like this:
+`import {buildRes, buildReq, buildNext} from 'utils/generate'`
+
+## 🦉 Elaboration & Feedback
+
+After the instruction, copy the URL below into your browser:
+http://ws.kcd.im/?ws=Testing%20Node%20Apps&e=Testing%20Middleware&em=

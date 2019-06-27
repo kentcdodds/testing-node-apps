@@ -22,5 +22,11 @@ module.exports = {
         },
       },
     },
+    {
+      files: ['**/__tests__/*.exercise.*'],
+      rules: {
+        'jest/prefer-todo': 'off',
+      },
+    },
   ],
 }

@@ -39,9 +39,9 @@
 - 😴 30 Minutes
 - 🏋 Testing Controllers (`src/routes/__tests__/list-items.md`)
 - 😴 10 Minutes
-- 🏋 Testing API routes (Part 1)
+- 🏋 Testing Authentication API Routes (`src/__tests__/auth.md`)
 - 😴 10 Minutes
-- 🏋 Testing API routes (Part 2)
+- 🏋 Testing CRUD API Routes (`src/__tests__/list-items.md`)
 - ❓ Q&A
 
 ## Scripts

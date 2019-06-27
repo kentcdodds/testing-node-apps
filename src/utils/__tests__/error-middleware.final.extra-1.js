@@ -4,7 +4,7 @@
 import {UnauthorizedError} from 'express-jwt'
 import errorMiddleware from '../error-middleware'
 
-function getRes(overrides) {
+function buildRes(overrides) {
   const res = {
     json: jest.fn(() => res),
     status: jest.fn(() => res),
@@ -15,7 +15,7 @@ function getRes(overrides) {
 
 test('responds with 401 for express-jwt UnauthorizedError', () => {
   const req = {}
-  const res = getRes()
+  const res = buildRes()
   const next = jest.fn()
   const code = 'fake_code'
   const message = 'Fake Error Message'
@@ -28,7 +28,7 @@ test('responds with 401 for express-jwt UnauthorizedError', () => {
 
 test('responds with 500 and the error object', () => {
   const req = {}
-  const res = getRes()
+  const res = buildRes()
   const next = jest.fn()
   const error = new Error('blah')
   errorMiddleware(error, req, res, next)
@@ -42,7 +42,7 @@ test('responds with 500 and the error object', () => {
 
 test('calls next if headersSent is true', () => {
   const req = {}
-  const res = getRes({headersSent: true})
+  const res = buildRes({headersSent: true})
   const next = jest.fn()
   const error = new Error('blah')
   errorMiddleware(error, req, res, next)
