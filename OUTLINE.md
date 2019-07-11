@@ -89,8 +89,6 @@ data we're dealing with here.
 
 > /me wishes we could use GraphQL
 
-If your "database" gets out of whack, you can purge it via:
-
 - Book
 
   - id: string
