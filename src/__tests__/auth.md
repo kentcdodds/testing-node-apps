@@ -83,7 +83,7 @@ Here's a quick example:
 let server
 
 beforeAll(async () => {
-  server = await startServer
+  server = await startServer()
 })
 
 afterAll(async () => {
