@@ -8,14 +8,14 @@ import * as generate from 'utils/generate'
 import * as booksDB from '../db/books'
 import startServer from '../start'
 
-let baseURL
+let baseURL, server
 
 beforeAll(async () => {
-  const server = await startServer()
+  server = await startServer()
   baseURL = `http://localhost:${server.address().port}/api`
-
-  afterAll(() => server.close())
 })
+
+afterAll(() => server.close())
 
 beforeEach(() => resetDb())
 

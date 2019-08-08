@@ -5,10 +5,13 @@ import {resetDb} from 'utils/db-utils'
 import * as generate from 'utils/generate'
 import startServer from '../start'
 
+let server
+
 beforeAll(async () => {
-  const server = await startServer({port: 8000})
-  afterAll(() => server.close())
+  server = await startServer({port: 8000})
 })
+
+afterAll(() => server.close())
 
 beforeEach(() => resetDb())
 
