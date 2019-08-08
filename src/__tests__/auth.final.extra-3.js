@@ -8,16 +8,16 @@ import {getData, handleRequestFailure, resolve} from 'utils/async'
 import * as usersDB from '../db/users'
 import startServer from '../start'
 
-let baseURL, api, server
+let api
 
 beforeAll(async () => {
-  server = await startServer()
-  baseURL = `http://localhost:${server.address().port}/api`
+  const server = await startServer()
+  const baseURL = `http://localhost:${server.address().port}/api`
   api = axios.create({baseURL})
   api.interceptors.response.use(getData, handleRequestFailure)
-})
 
-afterAll(() => server.close())
+  afterAll(() => server.close())
+})
 
 beforeEach(() => resetDb())
 

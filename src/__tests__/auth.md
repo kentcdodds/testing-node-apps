@@ -80,14 +80,11 @@ the server so it stops waiting on incoming requests.
 Here's a quick example:
 
 ```javascript
-let server
-
 beforeAll(async () => {
-  server = await startServer
-})
-
-afterAll(async () => {
-  await server.close()
+  const server = await startServer()
+  afterAll(async () => {
+    await server.close()
+  })
 })
 ```
 

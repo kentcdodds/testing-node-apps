@@ -7,16 +7,16 @@ import * as generate from 'utils/generate'
 import {getData, handleRequestFailure} from 'utils/async'
 import startServer from '../start'
 
-let baseURL, api, server
+let api
 
 beforeAll(async () => {
-  server = await startServer()
-  baseURL = `http://localhost:${server.address().port}/api`
+  const server = await startServer()
+  const baseURL = `http://localhost:${server.address().port}/api`
   api = axios.create({baseURL})
   api.interceptors.response.use(getData, handleRequestFailure)
-})
 
-afterAll(() => server.close())
+  afterAll(() => server.close())
+})
 
 beforeEach(() => resetDb())
 
