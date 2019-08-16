@@ -53,7 +53,7 @@ test('responds with 500 and the error object', () => {
   expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.json).toHaveBeenCalledWith({
     message: error.message,
-    stack: expect.any(String),
+    stack: error.stack,
   })
   expect(res.json).toHaveBeenCalledTimes(1)
 })
