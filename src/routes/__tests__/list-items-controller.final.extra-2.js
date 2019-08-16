@@ -151,6 +151,7 @@ test(`getListItems returns a user's list items`, async () => {
       bookId: books[1].id,
     }),
   ]
+
   booksDB.readManyById.mockResolvedValueOnce(books)
   listItemsDB.query.mockResolvedValueOnce(userListItems)
 
@@ -159,16 +160,14 @@ test(`getListItems returns a user's list items`, async () => {
 
   await listItemsController.getListItems(req, res)
 
-  expect(booksDB.readManyById).toHaveBeenCalledWith([
-    userListItems[0].bookId,
-    userListItems[1].bookId,
-  ])
+  expect(booksDB.readManyById).toHaveBeenCalledWith([books[0].id, books[1].id])
   expect(booksDB.readManyById).toHaveBeenCalledTimes(1)
+
   expect(listItemsDB.query).toHaveBeenCalledWith({ownerId: user.id})
   expect(listItemsDB.query).toHaveBeenCalledTimes(1)
+
   expect(res.json).toHaveBeenCalledWith({
     listItems: [
-      // the returned list items have the books expanded
       {...userListItems[0], book: books[0]},
       {...userListItems[1], book: books[1]},
     ],
