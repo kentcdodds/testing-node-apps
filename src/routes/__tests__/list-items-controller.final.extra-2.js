@@ -75,6 +75,7 @@ test('setListItem sets the listItem on the req', async () => {
   expect(listItemsDB.readById).toHaveBeenCalledWith(listItem.id)
   expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
 
+  expect(next).toHaveBeenCalledWith(/* nothing */)
   expect(next).toHaveBeenCalledTimes(1)
 
   expect(req.listItem).toBe(listItem)
