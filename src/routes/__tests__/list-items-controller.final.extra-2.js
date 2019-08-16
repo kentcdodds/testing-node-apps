@@ -113,16 +113,18 @@ test('setListItem returns a 403 error if the list item does not belong to the us
     ownerId: 'SOMEONE_ELSE',
     id: 'FAKE_LIST_ITEM_ID',
   })
-
   listItemsDB.readById.mockResolvedValueOnce(listItem)
 
   const req = buildReq({user, params: {id: listItem.id}})
   const res = buildRes()
+  const next = buildNext()
 
-  await listItemsController.setListItem(req, res)
+  await listItemsController.setListItem(req, res, next)
 
   expect(listItemsDB.readById).toHaveBeenCalledWith(listItem.id)
   expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
+
+  expect(next).not.toHaveBeenCalled()
 
   expect(res.status).toHaveBeenCalledWith(403)
   expect(res.status).toHaveBeenCalledTimes(1)
