@@ -270,7 +270,6 @@ test('updateListItem updates an existing list item', async () => {
 test('deleteListItem deletes an existing list item', async () => {
   const user = buildUser()
   const listItem = buildListItem({ownerId: user.id})
-  listItemsDB.remove.mockResolvedValueOnce()
 
   const req = buildReq({
     user,
