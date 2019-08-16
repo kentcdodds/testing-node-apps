@@ -88,8 +88,8 @@ test(`gets the user's repositories`, async () => {
 
   // because we're mocking getRepos, we want to make sure that it's being
   // called properly, so we'll add some assertions for that.
-  expect(github.getRepos).toHaveBeenCalledTimes(1)
   expect(github.getRepos).toHaveBeenCalledWith(user.username)
+  expect(github.getRepos).toHaveBeenCalledTimes(1)
 
   expect(repos).toEqual(fakeRepos)
 })

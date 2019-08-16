@@ -33,13 +33,13 @@ test('getListItem returns the req.listItem', async () => {
 
   await listItemsController.getListItem(req, res)
 
-  expect(booksDB.readById).toHaveBeenCalledTimes(1)
   expect(booksDB.readById).toHaveBeenCalledWith(book.id)
+  expect(booksDB.readById).toHaveBeenCalledTimes(1)
 
-  expect(res.json).toHaveBeenCalledTimes(1)
   expect(res.json).toHaveBeenCalledWith({
     listItem: {...listItem, book},
   })
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
 
 test('createListItem returns a 400 error if no bookId is provided', async () => {
@@ -48,9 +48,8 @@ test('createListItem returns a 400 error if no bookId is provided', async () => 
 
   await listItemsController.createListItem(req, res)
 
-  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.status).toHaveBeenCalledWith(400)
-  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.json.mock.calls[0]).toMatchInlineSnapshot(`
     Array [
       Object {
@@ -58,6 +57,7 @@ test('createListItem returns a 400 error if no bookId is provided', async () => 
       },
     ]
   `)
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
 
 test('setListItem sets the listItem on the req', async () => {
@@ -72,8 +72,8 @@ test('setListItem sets the listItem on the req', async () => {
 
   await listItemsController.setListItem(req, res, next)
 
-  expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
   expect(listItemsDB.readById).toHaveBeenCalledWith(listItem.id)
+  expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
 
   expect(next).toHaveBeenCalledTimes(1)
 
@@ -88,12 +88,11 @@ test('setListItem returns a 404 error if the list item does not exist', async ()
 
   await listItemsController.setListItem(req, res)
 
-  expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
   expect(listItemsDB.readById).toHaveBeenCalledWith('FAKE_LIST_ITEM_ID')
+  expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
 
-  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.status).toHaveBeenCalledWith(404)
-  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.json.mock.calls[0]).toMatchInlineSnapshot(`
     Array [
       Object {
@@ -101,6 +100,7 @@ test('setListItem returns a 404 error if the list item does not exist', async ()
       },
     ]
   `)
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
 
 test('setListItem returns a 403 error if the list item does not belong to the user', async () => {
@@ -117,12 +117,11 @@ test('setListItem returns a 403 error if the list item does not belong to the us
 
   await listItemsController.setListItem(req, res)
 
-  expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
   expect(listItemsDB.readById).toHaveBeenCalledWith(listItem.id)
+  expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
 
-  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.status).toHaveBeenCalledWith(403)
-  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.json.mock.calls[0]).toMatchInlineSnapshot(`
     Array [
       Object {
@@ -130,6 +129,7 @@ test('setListItem returns a 403 error if the list item does not belong to the us
       },
     ]
   `)
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
 
 test(`getListItems returns a user's list items`, async () => {
@@ -153,14 +153,13 @@ test(`getListItems returns a user's list items`, async () => {
 
   await listItemsController.getListItems(req, res)
 
-  expect(booksDB.readManyById).toHaveBeenCalledTimes(1)
   expect(booksDB.readManyById).toHaveBeenCalledWith([
     userListItems[0].bookId,
     userListItems[1].bookId,
   ])
-  expect(listItemsDB.query).toHaveBeenCalledTimes(1)
+  expect(booksDB.readManyById).toHaveBeenCalledTimes(1)
   expect(listItemsDB.query).toHaveBeenCalledWith({ownerId: user.id})
-  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(listItemsDB.query).toHaveBeenCalledTimes(1)
   expect(res.json).toHaveBeenCalledWith({
     listItems: [
       // the returned list items have the books expanded
@@ -168,6 +167,7 @@ test(`getListItems returns a user's list items`, async () => {
       {...userListItems[1], book: books[1]},
     ],
   })
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
 
 test('createListItem creates and returns a list item', async () => {
@@ -183,23 +183,23 @@ test('createListItem creates and returns a list item', async () => {
 
   await listItemsController.createListItem(req, res)
 
-  expect(listItemsDB.query).toHaveBeenCalledTimes(1)
   expect(listItemsDB.query).toHaveBeenCalledWith({
     ownerId: user.id,
     bookId: book.id,
   })
+  expect(listItemsDB.query).toHaveBeenCalledTimes(1)
 
-  expect(listItemsDB.create).toHaveBeenCalledTimes(1)
   expect(listItemsDB.create).toHaveBeenCalledWith({
     ownerId: user.id,
     bookId: book.id,
   })
+  expect(listItemsDB.create).toHaveBeenCalledTimes(1)
 
-  expect(booksDB.readById).toHaveBeenCalledTimes(1)
   expect(booksDB.readById).toHaveBeenCalledWith(book.id)
+  expect(booksDB.readById).toHaveBeenCalledTimes(1)
 
-  expect(res.json).toHaveBeenCalledTimes(1)
   expect(res.json).toHaveBeenCalledWith({listItem: {...createdListItem, book}})
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
 
 test('createListItem returns a 400 error if the user already has a list item for the given book', async () => {
@@ -212,15 +212,14 @@ test('createListItem returns a 400 error if the user already has a list item for
   const res = buildRes()
 
   await listItemsController.createListItem(req, res)
-  expect(listItemsDB.query).toHaveBeenCalledTimes(1)
   expect(listItemsDB.query).toHaveBeenCalledWith({
     ownerId: user.id,
     bookId: book.id,
   })
+  expect(listItemsDB.query).toHaveBeenCalledTimes(1)
 
-  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.status).toHaveBeenCalledWith(400)
-  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.json.mock.calls[0]).toMatchInlineSnapshot(`
     Array [
       Object {
@@ -228,6 +227,7 @@ test('createListItem returns a 400 error if the user already has a list item for
       },
     ]
   `)
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
 
 test('updateListItem updates an existing list item', async () => {
@@ -250,16 +250,16 @@ test('updateListItem updates an existing list item', async () => {
 
   await listItemsController.updateListItem(req, res)
 
-  expect(listItemsDB.update).toHaveBeenCalledTimes(1)
   expect(listItemsDB.update).toHaveBeenCalledWith(listItem.id, updates)
+  expect(listItemsDB.update).toHaveBeenCalledTimes(1)
 
-  expect(booksDB.readById).toHaveBeenCalledTimes(1)
   expect(booksDB.readById).toHaveBeenCalledWith(book.id)
+  expect(booksDB.readById).toHaveBeenCalledTimes(1)
 
-  expect(res.json).toHaveBeenCalledTimes(1)
   expect(res.json).toHaveBeenCalledWith({
     listItem: {...mergedListItemAndUpdates, book},
   })
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
 
 test('deleteListItem deletes an existing list item', async () => {
@@ -275,9 +275,9 @@ test('deleteListItem deletes an existing list item', async () => {
 
   await listItemsController.deleteListItem(req, res)
 
-  expect(listItemsDB.remove).toHaveBeenCalledTimes(1)
   expect(listItemsDB.remove).toHaveBeenCalledWith(listItem.id)
+  expect(listItemsDB.remove).toHaveBeenCalledTimes(1)
 
-  expect(res.json).toHaveBeenCalledTimes(1)
   expect(res.json).toHaveBeenCalledWith({success: true})
+  expect(res.json).toHaveBeenCalledTimes(1)
 })

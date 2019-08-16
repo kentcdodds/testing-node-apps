@@ -28,11 +28,11 @@ test('getListItem returns the req.listItem', async () => {
 
   await listItemsController.getListItem(req, res)
 
-  expect(booksDB.readById).toHaveBeenCalledTimes(1)
   expect(booksDB.readById).toHaveBeenCalledWith(book.id)
+  expect(booksDB.readById).toHaveBeenCalledTimes(1)
 
-  expect(res.json).toHaveBeenCalledTimes(1)
   expect(res.json).toHaveBeenCalledWith({
     listItem: {...listItem, book},
   })
+  expect(res.json).toHaveBeenCalledTimes(1)
 })

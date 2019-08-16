@@ -66,8 +66,8 @@ const myFn = jest.fn(() => 42)
 const result = myFn({message: 'hello'})
 
 expect(result).toBe(42)
-expect(myFn).toHaveBeenCalledTimes(1)
 expect(myFn).toHaveBeenCalledWith({message: 'hello'})
+expect(myFn).toHaveBeenCalledTimes(1)
 ```
 
 That's all you need to know for this exercise, but there's a lot more to learn

@@ -28,13 +28,13 @@ test('getListItem returns the req.listItem', async () => {
 
   await listItemsController.getListItem(req, res)
 
-  expect(booksDB.readById).toHaveBeenCalledTimes(1)
   expect(booksDB.readById).toHaveBeenCalledWith(book.id)
+  expect(booksDB.readById).toHaveBeenCalledTimes(1)
 
-  expect(res.json).toHaveBeenCalledTimes(1)
   expect(res.json).toHaveBeenCalledWith({
     listItem: {...listItem, book},
   })
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
 
 test('createListItem returns a 400 error if no bookId is provided', async () => {
@@ -43,9 +43,8 @@ test('createListItem returns a 400 error if no bookId is provided', async () => 
 
   await listItemsController.createListItem(req, res)
 
-  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.status).toHaveBeenCalledWith(400)
-  expect(res.json).toHaveBeenCalledTimes(1)
+  expect(res.status).toHaveBeenCalledTimes(1)
   expect(res.json.mock.calls[0]).toMatchInlineSnapshot(`
     Array [
       Object {
@@ -53,4 +52,5 @@ test('createListItem returns a 400 error if no bookId is provided', async () => 
       },
     ]
   `)
+  expect(res.json).toHaveBeenCalledTimes(1)
 })
