@@ -80,17 +80,20 @@ test('setListItem sets the listItem on the req', async () => {
 
   expect(req.listItem).toBe(listItem)
 })
-
-test('setListItem returns a 404 error if the list item does not exist', async () => {
+test('setListItem returns a 404 error if the list item does not exit', async () => {
   listItemsDB.readById.mockResolvedValueOnce(null)
 
-  const req = buildReq({params: {id: 'FAKE_LIST_ITEM_ID'}})
+  const fakeListItemId = 'FAKE_LIST_ITEM_ID'
+  const req = buildReq({params: {id: fakeListItemId}})
   const res = buildRes()
+  const next = buildNext()
 
-  await listItemsController.setListItem(req, res)
+  await listItemsController.setListItem(req, res, next)
 
-  expect(listItemsDB.readById).toHaveBeenCalledWith('FAKE_LIST_ITEM_ID')
+  expect(listItemsDB.readById).toHaveBeenCalledWith(fakeListItemId)
   expect(listItemsDB.readById).toHaveBeenCalledTimes(1)
+
+  expect(next).not.toHaveBeenCalled()
 
   expect(res.status).toHaveBeenCalledWith(404)
   expect(res.status).toHaveBeenCalledTimes(1)
