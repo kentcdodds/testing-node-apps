@@ -7,20 +7,21 @@ import * as generate from 'utils/generate'
 import {getData, handleRequestFailure} from 'utils/async'
 import startServer from '../start'
 
-let baseURL, api, server
+let server
 
 beforeAll(async () => {
   // NOTE: I set the port here to 8001 so we don't conflict with the other
   // files. We'll solve this problem in another extra credit
   server = await startServer({port: 8001})
-  baseURL = 'http://localhost:8001/api'
-  api = axios.create({baseURL})
-  api.interceptors.response.use(getData, handleRequestFailure)
 })
 
 afterAll(() => server.close())
 
 beforeEach(() => resetDb())
+
+const baseURL = 'http://localhost:8001/api'
+const api = axios.create({baseURL})
+api.interceptors.response.use(getData, handleRequestFailure)
 
 test('auth flow', async () => {
   const {username, password} = generate.loginForm()
