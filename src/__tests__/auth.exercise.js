@@ -5,7 +5,6 @@
 // import axios from 'axios'
 // import {resetDb} from 'utils/db-utils'
 // import * as generate from 'utils/generate'
-// import {getData, handleRequestFailure} from 'utils/async'
 // import startServer from '../start'
 
 // 🐨 you'll need to start/stop the server using beforeAll and afterAll
