@@ -25,6 +25,10 @@ async function insert(user) {
   return newUser
 }
 
-export {readById, readByUsername, insertMany, insert, query}
+async function drop() {
+  users = []
+}
+
+export {readById, readByUsername, insertMany, insert, query, drop}
 
 /* eslint require-await:0 */

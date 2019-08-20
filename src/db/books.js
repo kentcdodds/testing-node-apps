@@ -22,6 +22,10 @@ async function insert(book) {
   books = [...books, book]
 }
 
-export {readById, readManyById, insertMany, query, insert}
+async function drop() {
+  books = []
+}
+
+export {readById, readManyById, insertMany, query, insert, drop}
 
 /* eslint require-await:0 */

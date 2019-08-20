@@ -38,8 +38,10 @@ async function insertTestUser(
   return {...testUser, token: getUserToken(testUser)}
 }
 
-function resetDb() {
-  return initDb({books: [], users: [], listItems: []})
+async function resetDb() {
+  await listItemsDB.drop()
+  await usersDB.drop()
+  await booksDB.drop()
 }
 
 export {resetDb, initDb, insertTestUser, generate}

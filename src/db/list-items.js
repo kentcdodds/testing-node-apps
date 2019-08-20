@@ -53,6 +53,10 @@ async function insertMany(manyListItems) {
   listItems = [...listItems, ...manyListItems]
 }
 
-export {query, create, readById, update, remove, insertMany}
+async function drop() {
+  listItems = []
+}
+
+export {query, create, readById, update, remove, insertMany, drop}
 
 /* eslint require-await:0 */
