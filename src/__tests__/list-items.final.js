@@ -56,6 +56,6 @@ test('listItem CRUD', async () => {
   const error = await authAPI.get(listItemIdUrl).catch(resolve)
   expect(error.status).toBe(404)
   expect(error.data).toEqual({
-    message: expect.stringContaining('No list item was found with the id of'),
+    message: `No list item was found with the id of ${listItemId}`,
   })
 })
