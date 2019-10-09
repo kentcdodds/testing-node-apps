@@ -1,3 +1,9 @@
+<p align="center">
+<a href="https://codefund.io/properties/510/visit-sponsor">
+<img src="https://codefund.io/properties/510/sponsor" />
+</a>
+</p>
+
 # Testing Node.js Apps
 
 👋 hi there! My name is [Kent C. Dodds](https://kentcdodds.com)! This is a
