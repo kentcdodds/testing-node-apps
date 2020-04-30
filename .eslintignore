@@ -1,4 +1,5 @@
 node_modules
 coverage
 build
-scripts/workshop-setup.js
+scripts/setup.js
+
