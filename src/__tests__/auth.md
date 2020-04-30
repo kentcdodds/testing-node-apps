@@ -153,14 +153,14 @@ We need to make sure that every test has a unique port for the server, otherwise
 we can't run our tests in parallel without servers trying to bind to the same
 port.
 
-To solve this, we can dynamically determine the port based on
-`process.env.JEST_WORKER_ID` which is a number that indicates the worker
-"thread" for our current process.
+To solve this, we can let the operating system set the port dynamically by passing
+`0` as the port to listen to.
+
+📜 [learn more](https://nodejs.org/api/net.html#net_server_listen_port_host_backlog_callback)
 
 Our `startServer` implementation will default to `process.env.PORT` if it's
 available. Well guess what! It is! Checkout `test/setup-env.js` and you'll
-notice that we're setting the PORT variable based on the JEST_WORKER_ID. So you
-can use that!
+notice that we're setting the PORT environment variable to `0`.
 
 The trick will be getting and using the port that the server is listening on so
 you make the request to the right place. Here's how you do that:
