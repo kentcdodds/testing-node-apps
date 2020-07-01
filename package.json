@@ -47,7 +47,7 @@
     "replace-in-file": "^6.1.0"
   },
   "scripts": {
-    "build": "babel --out-dir dist --copy-files --ignore \"**/__tests__/**,**/__mocks__/**\" src",
+    "build": "babel --delete-dir-on-start --out-dir dist --copy-files --ignore \"**/__tests__/**,**/__mocks__/**\" --no-copy-ignored src",
     "start": "node ./scripts/codesandbox-page.js",
     "test": "is-ci \"test:final:coverage\" \"test:exercise:watch\"",
     "test:exercise": "jest --config test/jest.config.exercises.js",
