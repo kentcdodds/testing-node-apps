@@ -27,6 +27,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.4",
     "@babel/register": "^7.9.0",
     "cross-spawn": "^7.0.2",
     "eslint": "^6.8.0",
@@ -46,6 +47,7 @@
     "replace-in-file": "^6.0.0"
   },
   "scripts": {
+    "build": "babel --out-dir dist --copy-files --ignore \"**/__tests__/**,**/__mocks__/**\" src",
     "start": "node ./scripts/codesandbox-page.js",
     "test": "is-ci \"test:final:coverage\" \"test:exercise:watch\"",
     "test:exercise": "jest --config test/jest.config.exercises.js",
