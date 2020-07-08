@@ -1,7 +1,22 @@
-# Testing Node.js Apps
+<h1 align="center">
+  Testing Node.js Backends
+</h1>
 
 👋 hi there! My name is [Kent C. Dodds](https://kentcdodds.com)! This is a
 workshop repo to teach you how to test your Node.js Apps!
+
+<div align="center">
+  <h2><a href="https://testingjavascript.com">TestingJavaScript.com</a></h2>
+  <a href="https://testingjavascript.com">
+    <img
+      width="500"
+      alt="Learn the smart, efficient way to test any JavaScript application."
+      src="https://kentcdodds.com/images/testingjavascript-promo/tjs-4.jpg"
+    />
+  </a>
+</div>
+
+<hr />
 
 [![Build Status][build-badge]][build]
 [![AppVeyor Build Status][win-build-badge]][win-build]
@@ -178,6 +193,7 @@ Thanks goes to these wonderful people
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the
