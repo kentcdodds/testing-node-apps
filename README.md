@@ -1,5 +1,5 @@
 <h1 align="center">
-  Testing Node.js Backends
+  <a href="https://testingjavascript.com/courses/test-node-js-backends">Testing Node.js Backends</a>
 </h1>
 
 👋 hi there! My name is [Kent C. Dodds](https://kentcdodds.com)! This is a
