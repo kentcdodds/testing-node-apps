@@ -59,7 +59,7 @@
     "test:final:coverage": "npm run test:final -- --coverage",
     "format": "prettier --write \"**/*.+(js|json|css|md|mdx|html)\"",
     "lint": "eslint .",
-    "setup": "node ./scripts/setup && npm run validate && node ./scripts/autofill-feedback-email.js",
+    "setup": "node setup",
     "validate": "npm-run-all --parallel test:final:coverage lint"
   },
   "husky": {

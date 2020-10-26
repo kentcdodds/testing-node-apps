@@ -41,17 +41,17 @@ following:
       (~24 minutes). Please do NOT skip this step.
 - [ ] Attend my
       [Testing Fundamentals Workshop](https://kentcdodds.com/workshops/testing-fundamentals)
-      or have the equivalent fundamental understanding and experience with
+      **or** have the equivalent fundamental understanding and experience with
       automated testing and tools. (Additional learning material:
       [But really, what is a JavaScript test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test)
       and
       [But really, what is a JavaScript mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock))
 - [ ] Attend my
       [Modern JavaScript Workshop](https://kentcdodds.com/workshops/modern-javascript)
-      or have the equivalent experience with modern JavaScript APIs.
+      **or** have the equivalent experience with modern JavaScript APIs.
 - [ ] Attend my
       [Asynchronous JavaScript Workshop](https://kentcdodds.com/workshops/asynchronous-javascript)
-      or have equivalent experience with asynchronous JavaScript.
+      **or** have equivalent experience with asynchronous JavaScript.
 
 The more prepared you are for the workshop, the better it will go for you.
 
@@ -69,7 +69,7 @@ Here are the topics we'll be covering:
 ## System Requirements
 
 - [git][git] v2 or greater
-- [NodeJS][node] v10 or greater
+- [NodeJS][node] v12 or greater
 - [yarn][yarn] v1 or greater (or [npm][npm] v6 or greater)
 
 All of these must be available in your `PATH`. To verify things are set up
@@ -105,7 +105,7 @@ should be able to just run a few commands to get set up:
 ```
 git clone https://github.com/kentcdodds/testing-node-apps.git
 cd testing-node-apps
-npm run setup --silent
+node setup
 ```
 
 This may take a few minutes. **It will ask you for your email.** This is
@@ -151,25 +151,18 @@ emoji characters are here to help you.
 
 <details>
 
-<summary>"npm run setup" command not working</summary>
+<summary>"node setup" not working</summary>
 
-Here's what the setup script does. If it fails, try doing each of these things
-individually yourself:
+If you're confident that your system meets the system requirements above, then
+you can skip the system validation and manually setup the project:
 
 ```
-# verify your environment will work with the project
-node ./scripts/verify
-
-# install dependencies
 npm install
-
-# verify the project is ready to run
-npm run build
-npm run test:coverage
+npm run validate
 ```
 
-If any of those scripts fail, please try to work out what went wrong by the
-error message you get. If you still can't work it out, feel free to [open an
+If those scripts fail, please try to work out what went wrong by the error
+message you get. If you still can't work it out, feel free to [open an
 issue][issue] with _all_ the output from that script. I will try to help if I
 can.
 
@@ -205,7 +198,7 @@ specification. Contributions of any kind welcome!
 This material is available for private, non-commercial use under the
 [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html). If you
 would like to use this material to conduct your own workshop, please contact me
-at kent@doddsfamily.us
+at me@kentcdodds.com
 
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
