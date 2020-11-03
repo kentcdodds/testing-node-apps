@@ -25,46 +25,14 @@ workshop repo to teach you how to test your Node.js Apps!
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome][prs-badge]][prs] [![Code of Conduct][coc-badge]][coc]
 
-## Pre-Workshop Instructions/Requirements
+## Prerequisites
 
-In order for us to maximize our efforts during the workshop, please do the
-following:
-
-- [ ] Setup the project (follow the setup instructions below) (~5 minutes)
-- [ ] Install and setup [Zoom](https://zoom.us) on the computer you will be
-      using (~5 minutes)
-- [ ] Watch
-      [Use Zoom for KCD Workshops](https://egghead.io/lessons/egghead-use-zoom-for-kcd-workshops)
-      (~8 minutes).
-- [ ] Watch
-      [Setup and Logistics for KCD Workshops](https://egghead.io/lessons/egghead-setup-and-logistics-for-kcd-workshops)
-      (~24 minutes). Please do NOT skip this step.
-- [ ] Attend my
-      [Testing Fundamentals Workshop](https://kentcdodds.com/workshops/testing-fundamentals)
-      **or** have the equivalent fundamental understanding and experience with
-      automated testing and tools. (Additional learning material:
-      [But really, what is a JavaScript test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test)
-      and
-      [But really, what is a JavaScript mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock))
-- [ ] Attend my
-      [Modern JavaScript Workshop](https://kentcdodds.com/workshops/modern-javascript)
-      **or** have the equivalent experience with modern JavaScript APIs.
-- [ ] Attend my
-      [Asynchronous JavaScript Workshop](https://kentcdodds.com/workshops/asynchronous-javascript)
-      **or** have equivalent experience with asynchronous JavaScript.
-
-The more prepared you are for the workshop, the better it will go for you.
-
-## Workshop Outline
-
-Here are the topics we'll be covering:
-
-- Testing Pure Functions
-- Testing Middleware
-- Testing Controllers
-- Testing API routes
-- Mocking third party dependencies
-- Testing authenticated code
+- Have fundamental understanding and experience with automated testing and
+  tools. (Additional learning material:
+  [But really, what is a JavaScript test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test)
+  and
+  [But really, what is a JavaScript mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock))
+- Have experience with modern JavaScript APIs and features.
 
 ## System Requirements
 
@@ -87,17 +55,9 @@ variable and how to fix it here for [windows][win-path] or
 
 ## Setup
 
-You should be able to work through the entire workshop in the browser. This is
-actually the recommended approach as it requires absolutely no setup whatsoever.
-Go to
-[this codesandbox](https://codesandbox.io/s/github/kentcdodds/testing-node-apps)
-and click `Fork` in the top right corner. Then click the `+` in the terminal and
-you can run `npm test` to get the test watch mode started.
-
-[![Edit testing-node-apps](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/kentcdodds/testing-node-apps)
-
-If you'd rather be able to work through the workshop on your own computer, then
-follow the following instructions.
+> If you want to commit and push your work as you go, you'll want to
+> [fork](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo)
+> first and then clone your fork rather than this repo directly.
 
 After you've made sure to have the correct things (and versions) installed, you
 should be able to just run a few commands to get set up:
@@ -110,11 +70,66 @@ node setup
 
 This may take a few minutes. **It will ask you for your email.** This is
 optional and just automatically adds your email to the links in the project to
-make filling out some forms easier If you get any errors, please read through
-them and see if you can find out what the problem is. You may also want to look
-at [Troubleshooting](#troubleshooting). If you can't work it out on your own
-then please [file an issue][issue] and provide _all_ the output from the
-commands you ran (even if it's a lot).
+make filling out some forms easier.
+
+If you get any errors, please read through them and see if you can find out what
+the problem is. If you can't work it out on your own then please [file an
+issue][issue] and provide _all_ the output from the commands you ran (even if
+it's a lot).
+
+If you can't get the setup script to work, then just make sure you have the
+right versions of the requirements listed above, and run the following commands:
+
+```
+npm install
+npm run validate
+```
+
+It's recommended you run everything locally in the same environment you work in
+every day, but if you're having issues getting things set up, you can also set
+this up using [GitHub Codespaces](https://github.com/features/codespaces)
+([video demo](https://www.youtube.com/watch?v=gCoVJm3hGk4)) or
+[Codesandbox](https://codesandbox.io/s/github/kentcdodds/testing-node-apps).
+
+## App Intro
+
+### App Demo
+
+This is the backend for [Bookshelf](https://bookshelf.lol). I recommend you play
+around with it a little bit to get an idea of the kind of data we're dealing
+with here.
+
+### Data Model
+
+- User
+
+  - id: string
+  - username: string
+
+- List Item
+
+  - id: string
+  - bookId: string
+  - ownerId: string
+  - rating: number (-1 is no rating, otherwise it's 1-5)
+  - notes: string
+  - startDate: number (`Date.now()`)
+  - finishDate: number (`Date.now()`)
+
+> For convenience, our we return a `book` object on each list item which is the
+> book it's associated to. You're welcome frontend folks!
+
+> /me wishes we could use GraphQL
+
+- Book
+
+  - id: string
+  - title: string
+  - author: string
+  - coverImageUrl: string
+  - pageCount: number
+  - publisher: string
+  - synopsis: string
 
 ## Running the tests
 
@@ -122,19 +137,40 @@ commands you ran (even if it's a lot).
 npm test
 ```
 
-This will start [Jest](http://facebook.github.io/jest) in watch mode. Read the
-output and play around with it.
+This will start [Jest](https://jestjs.io/) in watch mode. Read the output and
+play around with it. You'll be working in the `.exercise` files.
 
-**Your goal will be to go into each test, swap the final version for the
-exercise version in the import, and make the tests pass**
+### Exercises
 
-## Helpful Emoji 🐨 💰 💯 🦉 📜 💣 🚨
+- `src/**/__tests__/[title].md`: Background, Exercise Instructions, Extra Credit
+- `src/**/__tests__/[title].exercise.js`: Exercise with Emoji helpers
+- `src/**/__tests__/[title].final.js`: Final version
+- `src/**/__tests__/[title].final.extra-#.js`: Final version of extra credit
+- `src/**/[title].js`: The source file that you'll be testing
+
+The purpose of the exercise is **not** for you to work through all the material.
+It's intended to get your brain thinking about the right questions to ask me as
+_I_ walk through the material.
+
+Here's the order of exercises we'll be doing as well as where you can find the
+markdown file associated with each.
+
+1.  🏋 Testing Pure Functions: `src/utils/__tests__/auth.md`
+2.  🏋 Testing Middleware: `src/utils/__tests__/error-middleware.md`
+3.  🏋 Testing Controllers: `src/routes/__tests__/list-items-controller.md`
+4.  🏋 Testing Authentication API Routes: `src/__tests__/auth.md`
+5.  🏋 Testing CRUD API Routes: `src/__tests__/list-items.md`
+
+### Helpful Emoji 🐨 💪 🏁 💰 💯 🦉 📜 💣 👨‍💼 🚨
 
 Each exercise has comments in it to help you get through the exercise. These fun
 emoji characters are here to help you.
 
-- **Kody the Koala Bear** 🐨 will tell you when there's something specific you
-  should do
+- **Kody the Koala** 🐨 will tell you when there's something specific you should
+  do
+- **Matthew the Muscle** 💪 will indicate what you're working with an exercise
+- **Chuck the Checkered Flag** 🏁 will indicate that you're working with a final
+  version
 - **Marty the Money Bag** 💰 will give you specific tips (and sometimes code)
   along the way
 - **Hannah the Hundred** 💯 will give you extra challenges you can do if you
@@ -144,6 +180,7 @@ emoji characters are here to help you.
 - **Dominic the Document** 📜 will give you links to useful documentation
 - **Berry the Bomb** 💣 will be hanging around anywhere you need to blow stuff
   up (delete code)
+- **Peter the Product Manager** 👨‍💼 helps us know what our users want
 - **Alfred the Alert** 🚨 will occasionally show up in the test failures with
   potential explanations for why the tests are failing.
 
@@ -199,6 +236,14 @@ This material is available for private, non-commercial use under the
 [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html). If you
 would like to use this material to conduct your own workshop, please contact me
 at me@kentcdodds.com
+
+## Workshop Feedback
+
+Each exercise has an Elaboration and Feedback link. Please fill that out after
+the exercise and instruction.
+
+At the end of the workshop, please go to this URL to give overall feedback.
+Thank you! https://kcd.im/tna-ws-feedback
 
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org

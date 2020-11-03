@@ -145,6 +145,9 @@ api.interceptors.response.use(getData, handleRequestFailure)
 // ...
 ```
 
+For more info on how the `handleRequestFailure` works, read:
+[Improve test error messages of your abstractions](https://kentcdodds.com/blog/improve-test-error-messages-of-your-abstractions).
+
 Give that a try!
 
 ### 💯 Ensure a unique server port
@@ -153,10 +156,11 @@ We need to make sure that every test has a unique port for the server, otherwise
 we can't run our tests in parallel without servers trying to bind to the same
 port.
 
-To solve this, we can let the operating system set the port dynamically by passing
-`0` as the port to listen to.
+To solve this, we can let the operating system set the port dynamically by
+passing `0` as the port to listen to.
 
-📜 [learn more](https://nodejs.org/api/net.html#net_server_listen_port_host_backlog_callback)
+📜
+[learn more](https://nodejs.org/api/net.html#net_server_listen_port_host_backlog_callback)
 
 Our `startServer` implementation will default to `process.env.PORT` if it's
 available. Well guess what! It is! Checkout `test/setup-env.js` and you'll
