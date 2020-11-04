@@ -18,7 +18,7 @@ jest.mock('../../db/list-items')
 jest.mock('../../db/books')
 
 beforeEach(() => {
-  jest.clearAllMocks()
+  jest.resetAllMocks()
 })
 
 test('getListItem returns the req.listItem', async () => {

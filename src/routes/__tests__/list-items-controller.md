@@ -67,7 +67,7 @@ beforeEach(() => {
   // functions so they don't have record of having been called before.
   // This is important for test isolation.
   // 📜 Related blog post: https://kentcdodds.com/blog/test-isolation-with-react
-  jest.clearAllMocks()
+  jest.resetAllMocks()
 })
 
 test(`gets the user's repositories`, async () => {
@@ -148,7 +148,7 @@ example that we had above:
 ```javascript
 test(`rejects with an error if no username is provided`, async () => {
   const userWithoutAUsername = {}
-  const error = await getUserRepos(userWithoutAUsername).catch(err => err)
+  const error = await getUserRepos(userWithoutAUsername).catch((err) => err)
 
   // make sure that the getRepos mock was not called
   expect(github.getRepos).not.toHaveBeenCalled()

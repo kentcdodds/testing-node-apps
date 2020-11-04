@@ -16,7 +16,7 @@
 // database calls in this test file.
 
 // 🐨 ensure that all mock functions have their call history cleared using
-// jest.clearAllMocks here as in the example.
+// jest.resetAllMocks here as in the example.
 
 test('getListItem returns the req.listItem', async () => {
   // 🐨 create a user
