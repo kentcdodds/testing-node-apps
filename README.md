@@ -22,7 +22,7 @@ workshop repo to teach you how to test your Node.js Apps!
 [![AppVeyor Build Status][win-build-badge]][win-build]
 [![Code Coverage][coverage-badge]][coverage]
 [![GPL 3.0 License][license-badge]][license]
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![All Contributors][all-contributors-badge]](#contributors)
 [![PRs Welcome][prs-badge]][prs] [![Code of Conduct][coc-badge]][coc]
 
 ## Prerequisites
@@ -245,44 +245,36 @@ the exercise and instruction.
 At the end of the workshop, please go to this URL to give overall feedback.
 Thank you! https://kcd.im/tna-ws-feedback
 
+<!-- prettier-ignore-start -->
+
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
 [yarn]: https://yarnpkg.com/
-[build-badge]:
-  https://img.shields.io/travis/kentcdodds/testing-node-apps.svg?style=flat-square&logo=travis
+[build-badge]: https://img.shields.io/travis/kentcdodds/testing-node-apps.svg?style=flat-square&logo=travis
 [build]: https://travis-ci.org/kentcdodds/testing-node-apps
-[license-badge]:
-  https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
-[license]:
-  https://github.com/kentcdodds/testing-node-apps/blob/master/README.md#license
-[prs-badge]:
-  https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
+[license]: https://github.com/kentcdodds/testing-node-apps/blob/master/README.md#license
+[prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
-[coc-badge]:
-  https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
-[coc]:
-  https://github.com/kentcdodds/testing-node-apps/blob/master/CODE_OF_CONDUCT.md
-[github-watch-badge]:
-  https://img.shields.io/github/watchers/kentcdodds/testing-node-apps.svg?style=social
+[coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
+[coc]: https://github.com/kentcdodds/testing-node-apps/blob/master/CODE_OF_CONDUCT.md
+[github-watch-badge]: https://img.shields.io/github/watchers/kentcdodds/testing-node-apps.svg?style=social
 [github-watch]: https://github.com/kentcdodds/testing-node-apps/watchers
-[github-star-badge]:
-  https://img.shields.io/github/stars/kentcdodds/testing-node-apps.svg?style=social
+[github-star-badge]: https://img.shields.io/github/stars/kentcdodds/testing-node-apps.svg?style=social
 [github-star]: https://github.com/kentcdodds/testing-node-apps/stargazers
-[twitter]:
-  https://twitter.com/intent/tweet?text=Check%20out%20testing-node-apps%20by%20@kentcdodds%20https://github.com/kentcdodds/testing-node-apps%20%F0%9F%91%8D
-[twitter-badge]:
-  https://img.shields.io/twitter/url/https/github.com/kentcdodds/testing-node-apps.svg?style=social
+[twitter]: https://twitter.com/intent/tweet?text=Check%20out%20testing-node-apps%20by%20@kentcdodds%20https://github.com/kentcdodds/testing-node-apps%20%F0%9F%91%8D
+[twitter-badge]: https://img.shields.io/twitter/url/https/github.com/kentcdodds/testing-node-apps.svg?style=social
 [emojis]: https://github.com/all-contributors/all-contributors#emoji-key
 [all-contributors]: https://github.com/all-contributors/all-contributors
-[win-path]:
-  https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
+[all-contributors-badge]: https://img.shields.io/github/all-contributors/kentcdodds/testing-node-apps?color=orange&style=flat-square
+[win-path]: https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
 [mac-path]: http://stackoverflow.com/a/24322978/971592
 [issue]: https://github.com/kentcdodds/testing-node-apps/issues/new
-[win-build-badge]:
-  https://img.shields.io/appveyor/ci/kentcdodds/testing-node-apps.svg?style=flat-square&logo=appveyor
+[win-build-badge]: https://img.shields.io/appveyor/ci/kentcdodds/testing-node-apps.svg?style=flat-square&logo=appveyor
 [win-build]: https://ci.appveyor.com/project/kentcdodds/testing-node-apps
-[coverage-badge]:
-  https://img.shields.io/codecov/c/github/kentcdodds/testing-node-apps.svg?style=flat-square
+[coverage-badge]: https://img.shields.io/codecov/c/github/kentcdodds/testing-node-apps.svg?style=flat-square
 [coverage]: https://codecov.io/github/kentcdodds/testing-node-apps
 [watchman]: https://facebook.github.io/watchman/docs/install.html
+
+<!-- prettier-ignore-end -->
