@@ -19,7 +19,6 @@ workshop repo to teach you how to test your Node.js Apps!
 <hr />
 
 [![Build Status][build-badge]][build]
-[![AppVeyor Build Status][win-build-badge]][win-build]
 [![Code Coverage][coverage-badge]][coverage]
 [![GPL 3.0 License][license-badge]][license]
 [![All Contributors][all-contributors-badge]](#contributors)
@@ -251,8 +250,8 @@ Thank you! https://kcd.im/tna-ws-feedback
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
 [yarn]: https://yarnpkg.com/
-[build-badge]: https://img.shields.io/travis/kentcdodds/testing-node-apps.svg?style=flat-square&logo=travis
-[build]: https://travis-ci.org/kentcdodds/testing-node-apps
+[build-badge]: https://img.shields.io/github/workflow/status/kentcdodds/testing-node-apps/validate/main?logo=github&style=flat-square
+[build]: https://github.com/kentcdodds/testing-node-apps/actions?query=workflow%3Avalidate
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
 [license]: https://github.com/kentcdodds/testing-node-apps/blob/master/README.md#license
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
