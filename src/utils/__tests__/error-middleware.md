@@ -43,7 +43,7 @@ function errorHandler(err, req, res, next) {
 Middleware have different purposes. For example, the `setListItem` middleware in
 `src/routes/list-items-controller.js` is responsible for finding the requested
 `listItem` by its ID, determining whether the current user is able to access
-that `listItem`, add adding that `listItem` to the `req` so later middleware can
+that `listItem`, adding that `listItem` to the `req` so later middleware can
 access it.
 
 ## Exercise
