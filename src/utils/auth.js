@@ -47,7 +47,7 @@ function getUserToken({id, username}) {
   )
 }
 
-const authMiddleware = expressJWT({secret})
+const authMiddleware = expressJWT({secret, algorithms: ["RS256"]})
 
 function getLocalStrategy() {
   return new LocalStrategy(async (username, password, done) => {
