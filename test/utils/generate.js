@@ -5,7 +5,7 @@ import {getUserToken, getSaltAndHash} from '../../src/utils/auth'
 // prefex all of the ones we generate with `!0_Oo` to ensure it's valid.
 const getPassword = (...args) => `!0_Oo${faker.internet.password(...args)}`
 const getUsername = faker.internet.userName
-const getId = faker.random.uuid
+const getId = faker.datatype.uuid
 const getSynopsis = faker.lorem.paragraph
 const getNotes = faker.lorem.paragraph
 
@@ -24,7 +24,7 @@ function buildBook(overrides) {
     title: faker.lorem.words(),
     author: faker.name.findName(),
     coverImageUrl: faker.image.imageUrl(),
-    pageCount: faker.random.number(400),
+    pageCount: faker.datatype.number(400),
     publisher: faker.company.companyName(),
     synopsis: faker.lorem.paragraph(),
     ...overrides,
@@ -42,8 +42,8 @@ function buildListItem(overrides = {}) {
     id: getId(),
     bookId,
     ownerId: owner.id,
-    rating: faker.random.number(5),
-    notes: faker.random.boolean() ? '' : getNotes(),
+    rating: faker.datatype.number(5),
+    notes: faker.datatype.boolean() ? '' : getNotes(),
     finishDate,
     startDate,
     ...overrides,
