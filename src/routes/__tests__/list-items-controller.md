@@ -127,7 +127,7 @@ We need to mock the database so we don't make calls to it in our tests.
 
 > 🦉 Note that we're using `express-async-errors` in this project. That means
 > that we can use `async/await` in our middleware and we don't have to call
-> `next`. So you can call the middleware function with and `await` in your test.
+> `next`. So you can call the middleware function with `await` in your test.
 
 ## Extra Credit
 
