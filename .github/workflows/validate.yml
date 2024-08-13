@@ -18,3 +18,4 @@ jobs:
 
       - name: ▶️ Run setup script
         run: npm run setup
+ 
